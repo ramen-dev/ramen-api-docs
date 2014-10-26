@@ -93,7 +93,6 @@ Get basic project info.
 
 ## Search for invitation
 
-
 ```shell
 $ curl \
 https://ramen.is/api/:version/projects/:project_slug/invitations/find?client_id<id>&client_secret=<secret>&email=user%40example.com
@@ -121,7 +120,7 @@ Ramen.find_invitation({email: 'user@example.com'})
 }
 ```
 
-### HTTP Request
+### HTTP Request`
 
 `GET /api/v1/projects/:project_slug/invitations/find`
 
@@ -143,9 +142,194 @@ used_at | DateTime value at which invitation was used
 used | Boolean indication if invitation has been used
 id | Primary ID of the invitation object 
 
-## List invites
-## Update an invite
-## Revoke or delete an invite
+
+## List all invites
+
+```shell
+$ curl \
+https://ramen.is/api/:version/projects/:project_slug/invitations?client_id<id>&client_secret=<secret>
+
+[
+  { "invitation": 
+    { "recipient_email" : "team_member@example.com",
+      "invitation_type" : "kitchen_team",
+      "used_at" : null,
+      "used" : false,
+      "id" : "544bf712646d614812000000"
+    }
+  },
+  { "invitation":
+    { "recipient_email" : "user@example.com",
+      "invitation_type" : "kitchen_customer",
+       "used_at" : "2014-10-23T23:55:26-06:00", 
+       "used" : true,
+      "id" : "544bf72a646d614812030000"
+    }
+  }
+]
+```
+
+```ruby
+Ramen.list_invitations
+
+[
+  { "invitation": 
+    { "recipient_email" : "team_member@example.com",
+      "invitation_type" : "kitchen_team",
+      "used_at" : null,
+      "used" : false,
+      "id" : "544bf712646d614812000000"
+    }
+  },
+  { "invitation":
+    { "recipient_email" : "user@example.com",
+      "invitation_type" : "kitchen_customer",
+      "used_at" : "2014-10-23T23:55:26-06:00", 
+       "used" : true,
+      "id" : "544bf72a646d614812030000"
+    }
+  }
+]
+
+```
+
+### HTTP Request`
+
+`GET /api/v1/projects/:project_slug/invitations`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+Required API Parameters | <a href="#required-api-parameters">link to section</a>
+
+### HTTP Response
+
+Parameter | Description
+----------|------------
+invitation | Object type 
+recipient_email | Email addresss invitation sent to 
+invitation_type | Invitation type
+used_at | DateTime value at which invitation was used
+used | Boolean indication if invitation has been used
+id | Primary ID of the invitation object 
+
+
+## List accepted invites
+
+```shell
+$ curl \
+https://ramen.is/api/:version/projects/:project_slug/invitations/accepted?client_id<id>&client_secret=<secret>
+
+[
+  { "invitation":
+    { "recipient_email" : "user@example.com",
+      "invitation_type" : "kitchen_customer",
+       "used_at" : "2014-10-23T23:55:26-06:00", 
+       "used" : true,
+      "id" : "544bf72a646d614812030000"
+    }
+  }
+]
+```
+
+```ruby
+Ramen.accepted_invitations
+
+[
+  { "invitation":
+    { "recipient_email" : "user@example.com",
+      "invitation_type" : "kitchen_customer",
+      "used_at" : "2014-10-23T23:55:26-06:00", 
+       "used" : true,
+      "id" : "544bf72a646d614812030000"
+    }
+  }
+]
+
+```
+
+### HTTP Request`
+
+`GET /api/v1/projects/:project_slug/invitations/accepted`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+Required API Parameters | <a href="#required-api-parameters">link to section</a>
+
+### HTTP Response
+
+Parameter | Description
+----------|------------
+invitation | Object type 
+recipient_email | Email addresss invitation sent to 
+invitation_type | Invitation type
+used_at | DateTime value at which invitation was used
+used | Boolean indication if invitation has been used
+id | Primary ID of the invitation object 
+
+
+## List waiting invites
+```shell
+$ curl \
+https://ramen.is/api/:version/projects/:project_slug/invitations/waiting?client_id<id>&client_secret=<secret>
+
+[
+  { "invitation" : 
+    { "recipient_email" : "team_member@example.com",
+      "invitation_type" : "kitchen_team",
+      "used_at" : null,
+      "used" : false,
+      "id" : "544bf712646d614812000000"
+    }
+  }
+]
+```
+
+```ruby
+Ramen.list_invitations
+
+[
+  { "invitation" : 
+    { "recipient_email" : "team_member@example.com",
+      "invitation_type" : "kitchen_team",
+      "used_at" : null,
+      "used" : false,
+      "id" : "544bf712646d614812000000"
+    }
+  }
+]
+
+```
+
+### HTTP Request`
+
+`GET /api/v1/projects/:project_slug/invitations/waiting`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+Required API Parameters | <a href="#required-api-parameters">link to section</a>
+
+### HTTP Response
+
+Parameter | Description
+----------|------------
+invitation | Object type 
+recipient_email | Email addresss invitation sent to 
+invitation_type | Invitation type
+used_at | DateTime value at which invitation was used
+used | Boolean indication if invitation has been used
+id | Primary ID of the invitation object 
+
+## Resent an invitation
+
+## Revoke an invitation
+
+
 
 # Community Members
 
