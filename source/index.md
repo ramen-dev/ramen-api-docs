@@ -1,125 +1,157 @@
 ---
-title: API Reference
-
+title: Ramen API Reference
 language_tabs:
   - shell
   - ruby
-  - python
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
-
 includes:
   - errors
-
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Welcome to the Ramen API! 
 
 # Authentication
 
-> To authorize, use this code:
+  Ramen uses API keys to authenticate API requests. 
+
+  You can create and revoke API keys within each Kitchen on the API keys page, `/projects/{{project_name}}/kitchen/api_keys`. Each API key is scoped to only access within its respective Kitchen. You cannot use one API key to access two different Kitchens.
+
+# Required API Parameters
+
+During each of the API requests, you'll need to provide the following URL params, 
+
+URL Parameters
+
+Parameter | Description
+--------- | -----------
+version | API version (defaults to, "v1")
+project_slug | Project slug as it appears in URL
+client_id | The client_id
+client_secret | The client_secret
+
+The Ruby client library sets these required fields as initialization:
 
 ```ruby
-require 'kittn'
+Ramen.configure do |c|
+  c.client_id = "your_client_id"
+  c.client_secret = "your_client_secret"
+  c.project_slug = "your-project-name"
+  c.api_version = "v1" # default 
+end
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+
 ```
 
-```python
-import 'kittn'
+# Project
 
-api = Kittn.authorize('meowmeowmeow')
-```
+## Basic Info
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
+Get basic project info.
 
 ### HTTP Request
 
-`GET http://example.com/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+`GET https://ramen.is/api/v1/project/`
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
 </aside>
 
-## Get a Specific Kitten
+# Features
+
+
+`CREATE`
+
+```json
+{
+  "feature" : {
+    "name" : "New Awesome Feature"
+  }
+}
+```
+
+`SHOW`
+
+`LIST`
+
+`UPDATE`
+
+`DELETE`
+
+
+## Get a specific feature
+## List features
+## Update a feature
+## Delete a feature
+
+
+
+# Invitations
+
+## Create invitation
+
+
+## Search for invitation
+
+
+```shell
+$ curl \
+https://ramen.is/api/:version/projects/:project_slug/invitations/find?client_id<id>&client_secret=<secret>&email=user%40example.com
+
+{ "invitation":
+  { "recipient_email" : "user@example.com",
+    "invitation_type" : "kitchen_customer",
+    "used_at" : null,
+    "used" : false,
+    "id" : "544bf72a646d614812030000"
+  }
+}
+```
+
+```ruby
+Ramen.find_invitation({email: 'user@example.com'})
+
+{ "invitation":
+  { "recipient_email" : "user@example.com",
+    "invitation_type" : "kitchen_customer",
+    "used_at" : null,
+    "used" : false,
+    "id" : "544bf72a646d614812030000"
+  }
+}
+```
+
+### HTTP Request
+
+`GET /api/v1/projects/:project_slug/invitations/find`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+Required API Parameters | <a href="#required-api-parameters">link to section</a>
+email | Email address to search by
+
+### HTTP Response
+
+Parameter | Description
+----------|------------
+invitation | Object type
+recipient_email | Email addresss invitation sent to 
+invitation_type | Invitation type
+used_at | DateTime value at which invitation was used
+used | Boolean indication if invitation has been used
+id | Primary ID of the invitation object 
+
+## List invites
+## Update an invite
+## Revoke or delete an invite
+
+# Community Members
+
+# Labels
+
+# Segments
 
 ```ruby
 require 'kittn'
