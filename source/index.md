@@ -58,27 +58,6 @@ Get basic project info.
 </aside>
 
 # Features
-
-
-`CREATE`
-
-```json
-{
-  "feature" : {
-    "name" : "New Awesome Feature"
-  }
-}
-```
-
-`SHOW`
-
-`LIST`
-
-`UPDATE`
-
-`DELETE`
-
-
 ## Get a specific feature
 ## List features
 ## Update a feature
@@ -89,6 +68,55 @@ Get basic project info.
 # Invitations
 
 ## Create invitation
+
+```shell
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{ "client_id": "123", "client_secret": "abc", "invitation" : {"email": "user@example.com", "type": "kitchen"} }' \
+  https://ramen.is/api/v1/projects/:project_slug/invitations
+
+{"status" : "sent"}
+
+{"error" : "email already invited"}
+```
+
+```ruby
+Ramen.send_invitation(email: "new-user@example.com", type: "kitchen")
+
+{"status" : "sent"}
+
+{"error" : "email already invited"}
+```
+
+### HTTP Request
+
+`POST /api/v1/projects/:project_slug/invitations`
+
+### JSON Body Parameters
+
+Parameter | Description
+--------- | -----------
+Required API Parameters | <a href="#required-api-parameters">link to section</a>
+email | Email address (required)
+type | Invitation type (required). Possible values, "team", "champion", "kitchen", "kitchen_open_invite", "kitchen_team", "kitchen_customer"
+name | Name displayed on Ramen profile (optional). For example, "First Last".
+title | Title displayed on Ramen profile (optional)
+label | Apply Ramen label to invite and user when they join (optional)
+note | Text included in email (optional)
+
+### HTTP Response - Success
+
+Parameter | Description
+----------|------------
+status | sent
+
+
+### HTTP Response - Error
+
+Parameter | Description
+----------|------------
+error | email address already invited
 
 
 ## Search for invitation
@@ -325,60 +353,49 @@ used_at | DateTime value at which invitation was used
 used | Boolean indication if invitation has been used
 id | Primary ID of the invitation object 
 
-## Resent an invitation
+## Resend an invitation
+
+```shell
+```
+
+```ruby
+```
+
+### HTTP Request
+
+`POST url`
+
+### JSON Body Parameters
+
+### HTTP Response
+
 
 ## Revoke an invitation
+
+```shell
+```
+
+```ruby
+```
+
+### HTTP Request
+
+`DELETE url`
+
+### JSON Body Parameters
+
+### HTTP Response
+
+
+
 
 
 
 # Community Members
+TODO 
 
 # Labels
+TODO
 
 # Segments
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
-
+TODO
