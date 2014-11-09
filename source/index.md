@@ -27,7 +27,6 @@ URL Parameters
 Parameter | Description
 --------- | -----------
 version | API version (defaults to, "v1")
-project_slug | Project slug as it appears in URL
 client_id | The client_id
 client_secret | The client_secret
 
@@ -37,7 +36,6 @@ The Ruby client library sets these required fields as initialization:
 Ramen.configure do |c|
   c.client_id = "your_client_id"
   c.client_secret = "your_client_secret"
-  c.project_slug = "your-project-name"
   c.api_version = "v1" # default 
 end
 
@@ -46,24 +44,24 @@ end
 
 # Project
 
-## Basic Info
+  ## Basic Info
 
-Get basic project info.
+  Get basic project info.
 
-### HTTP Request
+  ### HTTP Request
 
-`GET https://ramen.is/api/v1/project/`
+  `GET https://ramen.is/api/v1/project/`
 
-<aside class="success">
-</aside>
+  <aside class="success">
+  </aside>
 
-# Features
-## Get a specific feature
-## List features
-## Update a feature
-## Delete a feature
+  # Features
+  ## Get a specific feature
+  ## List features
+  ## Update a feature
+  ## Delete a feature
 
-
+  
 
 # Invitations
 
@@ -73,20 +71,38 @@ Get basic project info.
 curl \
   -X POST \
   -H "Content-Type: application/json" \
-  -d '{ "client_id": "123", "client_secret": "abc", "invitation" : {"email": "user@example.com", "type": "kitchen"} }' \
-  https://ramen.is/api/v1/projects/:project_slug/invitations
+  -H "RAMEN_CLIENT_ID: 123" \
+  -H "RAMEN_CLIENT_SECRET: abc" \
+  -d '{ "recipient_email": "user@example.com", "invitation_type": "kitchen" }' \
+  https://ramen.is/api/v1/invitations
 
-{"status" : "sent"}
+HTTP 200
+{
+  "recipient_email":"user@example.com",
+  "invitation_type":"kitchen",
+  "used_at":null,
+  "meta_data":{},
+  "used":false,
+  "id":"545ea888646d6115461d0000",
+  "object":"invitation"
+}
 
-{"error" : "email already invited"}
+--- or ---
+
+HTTP 404
+{
+  "error":"recipient_email already invited"
+}
 ```
 
 ```ruby
-Ramen.send_invitation(email: "new-user@example.com", type: "kitchen")
+Ramen::Invitation.create(recipient_email: "user@example.com", invitation_type: "kitchen")
 
-{"status" : "sent"}
 
-{"error" : "email already invited"}
+
+--- or ---
+
+{"error":"recipient_email already invited"}
 ```
 
 ### HTTP Request
