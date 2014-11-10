@@ -43,73 +43,62 @@
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to the Ramen API! </p>
-<h1 id='authentication'>Authentication</h1>
+
+<!-- see ramen-api-docs/source/includes/*.md for content -->
+
+          <h1 id='authentication'>Authentication</h1><pre class="highlight shell">curl <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_CLIENT_ID: 123"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_CLIENT_SECRET: abc"</span> <span class="se">\</span>
+  https://ramen.is/api/v1/....
+</pre>
+<pre class="highlight ruby"><span class="no">Ramen</span><span class="p">.</span><span class="nf">client_id</span> <span class="o">=</span> <span class="s2">"your_client_id"</span>
+<span class="no">Ramen</span><span class="p">.</span><span class="nf">client_secret</span> <span class="o">=</span> <span class="s2">"your_client_secret"</span>
+</pre>
+
 <p>Ramen uses API keys to authenticate API requests. </p>
 
-<p>You can create and revoke API keys within each Kitchen on the API keys page, <code class="prettyprint">/projects/{{project_name}}/kitchen/api_keys</code>. Each API key is scoped to only access within its respective Kitchen. You cannot use one API key to access two different Kitchens.</p>
-<h1 id='required-api-parameters'>Required API Parameters</h1>
-<p>During each of the API requests, you&rsquo;ll need to provide the following URL params, </p>
+<p>You can create and revoke API keys within each Kitchen on the API keys page, 
+<code class="prettyprint">/projects/:project-slug/kitchen/api_keys</code>. Each API key is scoped to only 
+access its respective Kitchen. You cannot use one API key to access 
+two different Kitchens.</p>
 
-<p>URL Parameters</p>
+<p>If you&rsquo;re using the API through simple HTTP requests, you&rsquo;ll need to provide 
+the <code class="prettyprint">client_id</code> and <code class="prettyprint">client_secret</code> in each request as HTTP headers.</p>
+
+<p>If you&rsquo;re using the Ruby client, you need to set the <code class="prettyprint">client_id</code> and 
+<code class="prettyprint">client_secret</code> at initialization.</p>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Value</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>version</td>
-<td>API version (defaults to, &ldquo;v1&rdquo;)</td>
-</tr>
-<tr>
 <td>client_id</td>
-<td>The client_id</td>
+<td>Api Key client_id</td>
 </tr>
 <tr>
 <td>client_secret</td>
-<td>The client_secret</td>
+<td>Api Key client_secret</td>
 </tr>
 </tbody></table>
 
-<p>The Ruby client library sets these required fields as initialization:</p>
-<pre class="highlight ruby"><span class="no">Ramen</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
-  <span class="n">c</span><span class="p">.</span><span class="nf">client_id</span> <span class="o">=</span> <span class="s2">"your_client_id"</span>
-  <span class="n">c</span><span class="p">.</span><span class="nf">client_secret</span> <span class="o">=</span> <span class="s2">"your_client_secret"</span>
-  <span class="n">c</span><span class="p">.</span><span class="nf">api_version</span> <span class="o">=</span> <span class="s2">"v1"</span> <span class="c1"># default </span>
-<span class="k">end</span>
-
-
-</pre>
-<h1 id='project'>Project</h1>
-<p>## Basic Info</p>
-
-<p>Get basic project info.</p>
-
-<p>### HTTP Request</p>
-
-<p><code class="prettyprint">GET https://ramen.is/api/v1/project/</code></p>
-
-<p><aside class="success">
-  </aside></p>
-
-<p># Features
-  ## Get a specific feature
-  ## List features
-  ## Update a feature
-  ## Delete a feature</p>
-<h1 id='invitations'>Invitations</h1><h2 id='create-invitation'>Create invitation</h2><pre class="highlight shell">curl <span class="se">\</span>
+          <h1 id='invitations'>Invitations</h1><h2 id='the-invitation-object'>The Invitation Object</h2>
+<!-- TODO describe the object -->
+<h2 id='create'>Create</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
   -X POST <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s2">"RAMEN_CLIENT_ID: 123"</span> <span class="se">\</span>
   -H <span class="s2">"RAMEN_CLIENT_SECRET: abc"</span> <span class="se">\</span>
-  -d <span class="s1">'{ "recipient_email": "user@example.com", "invitation_type": "kitchen" }'</span> <span class="se">\</span>
+  -d <span class="s1">'{ "recipient_email": "user@example.com", "invitation_type": "kitchen_open_invite" }'</span> <span class="se">\</span>
   https://ramen.is/api/v1/invitations
 
 HTTP 200
 <span class="o">{</span>
   <span class="s2">"recipient_email"</span>:<span class="s2">"user@example.com"</span>,
-  <span class="s2">"invitation_type"</span>:<span class="s2">"kitchen"</span>,
+  <span class="s2">"invitation_type"</span>:<span class="s2">"kitchen_open_invite"</span>,
   <span class="s2">"used_at"</span>:null,
   <span class="s2">"meta_data"</span>:<span class="o">{}</span>,
   <span class="s2">"used"</span>:false,
@@ -121,19 +110,37 @@ HTTP 200
 
 HTTP 404
 <span class="o">{</span>
-  <span class="s2">"error"</span>:<span class="s2">"recipient_email already invited"</span>
+  <span class="s2">"error"</span>: 
+  <span class="o">{</span>
+    <span class="s2">"message"</span>:<span class="s2">"recipient_email already invited"</span>,
+    <span class="s2">"param"</span>:<span class="s2">"recipient_email"</span>
+  <span class="o">}</span>
 <span class="o">}</span>
 </pre>
-<pre class="highlight ruby"><span class="no">Ramen</span><span class="o">::</span><span class="no">Invitation</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">recipient_email: </span><span class="s2">"user@example.com"</span><span class="p">,</span> <span class="ss">invitation_type: </span><span class="s2">"kitchen"</span><span class="p">)</span>
+<pre class="highlight ruby"><span class="n">invitation</span> <span class="o">=</span> <span class="no">Ramen</span><span class="o">::</span><span class="no">Invitation</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span>
+  <span class="ss">recipient_email: </span><span class="s2">"user@example.com"</span><span class="p">,</span> 
+  <span class="ss">invitation_type: </span><span class="s2">"kitchen_open_invite"</span>
+<span class="p">)</span>
 
+<span class="nb">puts</span> <span class="n">invitation</span><span class="p">.</span><span class="nf">inspect</span>
 
+<span class="c1">#&lt;Ramen::Invitation:0x3fd621b79314 id=54605542646d61117b020000&gt; JSON: {</span>
+  <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"54605542646d61117b020000"</span><span class="p">,</span>
+  <span class="s2">"recipient_email"</span><span class="p">:</span> <span class="s2">"user@example.com"</span><span class="p">,</span>
+  <span class="s2">"invitation_type"</span><span class="p">:</span> <span class="s2">"kitchen"</span><span class="p">,</span>
+  <span class="s2">"used_at"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s2">"meta_data"</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="s2">"used"</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
+  <span class="s2">"object"</span><span class="p">:</span> <span class="s2">"invitation"</span>
+<span class="p">}</span>
 
 <span class="o">---</span> <span class="n">or</span> <span class="o">---</span>
 
-<span class="p">{</span><span class="s2">"error"</span><span class="ss">:"recipient_email already invited"</span><span class="p">}</span>
+<span class="c1"># raises this error if recipient_email already invited</span>
+<span class="no">Ramen</span><span class="o">::</span><span class="no">InvalidRequestError</span> 
 </pre>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">POST /api/v1/projects/:project_slug/invitations</code></p>
+<p><code class="prettyprint">POST /api/v1/invitations</code></p>
 <h3 id='json-body-parameters'>JSON Body Parameters</h3>
 <table><thead>
 <tr>
@@ -142,438 +149,117 @@ HTTP 404
 </tr>
 </thead><tbody>
 <tr>
-<td>Required API Parameters</td>
-<td><a href="#required-api-parameters">link to section</a></td>
-</tr>
-<tr>
-<td>email</td>
+<td>recipient_email</td>
 <td>Email address (required)</td>
 </tr>
 <tr>
-<td>type</td>
-<td>Invitation type (required). Possible values, &ldquo;team&rdquo;, &ldquo;champion&rdquo;, &ldquo;kitchen&rdquo;, &ldquo;kitchen_open_invite&rdquo;, &ldquo;kitchen_team&rdquo;, &ldquo;kitchen_customer&rdquo;</td>
+<td>invitation_type</td>
+<td>Invitation type (required). Possible values, &ldquo;team&rdquo;, &ldquo;champion&rdquo;, &ldquo;kitchen&rdquo;, &ldquo;kitchen_open_invite&rdquo;, &ldquo;org_open_invite&rdquo;, &ldquo;kitchen_team&rdquo;, &ldquo;kitchen_customer&rdquo;</td>
 </tr>
 <tr>
-<td>name</td>
+<td>meta_data</td>
+<td>Hash for addtional attributes (optional)</td>
+</tr>
+<tr>
+<td>meta_data - name</td>
 <td>Name displayed on Ramen profile (optional). For example, &ldquo;First Last&rdquo;.</td>
 </tr>
 <tr>
-<td>title</td>
+<td>meta_data - title</td>
 <td>Title displayed on Ramen profile (optional)</td>
 </tr>
 <tr>
-<td>label</td>
-<td>Apply Ramen label to invite and user when they join (optional)</td>
-</tr>
-<tr>
-<td>note</td>
-<td>Text included in email (optional)</td>
-</tr>
-</tbody></table>
-<h3 id='http-response---success'>HTTP Response - Success</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>sent</td>
-</tr>
-</tbody></table>
-<h3 id='http-response---error'>HTTP Response - Error</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>error</td>
-<td>email address already invited</td>
-</tr>
-</tbody></table>
-<h2 id='search-for-invitation'>Search for invitation</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
-https://ramen.is/api/:version/projects/:project_slug/invitations/find?client_id&lt;id&gt;&amp;client_secret<span class="o">=</span>&lt;secret&gt;&amp;email<span class="o">=</span>user%40example.com
-
-<span class="o">{</span> <span class="s2">"invitation"</span>:
-  <span class="o">{</span> <span class="s2">"recipient_email"</span> : <span class="s2">"user@example.com"</span>,
-    <span class="s2">"invitation_type"</span> : <span class="s2">"kitchen_customer"</span>,
-    <span class="s2">"used_at"</span> : null,
-    <span class="s2">"used"</span> : <span class="nb">false</span>,
-    <span class="s2">"id"</span> : <span class="s2">"544bf72a646d614812030000"</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre>
-<pre class="highlight ruby"><span class="no">Ramen</span><span class="p">.</span><span class="nf">find_invitation</span><span class="p">({</span><span class="ss">email: </span><span class="s1">'user@example.com'</span><span class="p">})</span>
-
-<span class="p">{</span> <span class="s2">"invitation"</span><span class="p">:</span>
-  <span class="p">{</span> <span class="s2">"recipient_email"</span> <span class="p">:</span> <span class="s2">"user@example.com"</span><span class="p">,</span>
-    <span class="s2">"invitation_type"</span> <span class="p">:</span> <span class="s2">"kitchen_customer"</span><span class="p">,</span>
-    <span class="s2">"used_at"</span> <span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-    <span class="s2">"used"</span> <span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
-    <span class="s2">"id"</span> <span class="p">:</span> <span class="s2">"544bf72a646d614812030000"</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre>
-<h3 id='http-request'>HTTP Request`</h3>
-<p><code class="prettyprint">GET /api/v1/projects/:project_slug/invitations/find</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Required API Parameters</td>
-<td><a href="#required-api-parameters">link to section</a></td>
-</tr>
-<tr>
-<td>email</td>
-<td>Email address to search by</td>
+<td>meta_data - segment</td>
+<td>Apply Ramen label/segment to invite and user when they join (optional)</td>
 </tr>
 </tbody></table>
 <h3 id='http-response'>HTTP Response</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>invitation</td>
-<td>Object type</td>
-</tr>
-<tr>
-<td>recipient_email</td>
-<td>Email addresss invitation sent to</td>
-</tr>
-<tr>
-<td>invitation_type</td>
-<td>Invitation type</td>
-</tr>
-<tr>
-<td>used_at</td>
-<td>DateTime value at which invitation was used</td>
-</tr>
-<tr>
-<td>used</td>
-<td>Boolean indication if invitation has been used</td>
-</tr>
-<tr>
-<td>id</td>
-<td>Primary ID of the invitation object</td>
-</tr>
-</tbody></table>
-<h2 id='list-all-invites'>List all invites</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
-https://ramen.is/api/:version/projects/:project_slug/invitations?client_id&lt;id&gt;&amp;client_secret<span class="o">=</span>&lt;secret&gt;
+<p>Returns Invitation object or raises an error.</p>
+<h2 id='list'>List</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_CLIENT_ID: 123"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_CLIENT_SECRET: abc"</span> <span class="se">\</span>
+  http://ramen.dev/api/v1/invitations
 
 <span class="o">[</span>
-  <span class="o">{</span> <span class="s2">"invitation"</span>: 
-    <span class="o">{</span> <span class="s2">"recipient_email"</span> : <span class="s2">"team_member@example.com"</span>,
-      <span class="s2">"invitation_type"</span> : <span class="s2">"kitchen_team"</span>,
-      <span class="s2">"used_at"</span> : null,
-      <span class="s2">"used"</span> : <span class="nb">false</span>,
-      <span class="s2">"id"</span> : <span class="s2">"544bf712646d614812000000"</span>
-    <span class="o">}</span>
+  <span class="o">{</span>
+    <span class="s2">"recipient_email"</span>: <span class="s2">"user+1@example.com"</span>,
+    <span class="s2">"invitation_type"</span>: <span class="s2">"kitchen_open_invite"</span>,
+    <span class="s2">"used_at"</span>: null,
+    <span class="s2">"meta_data"</span>: <span class="o">{}</span>,
+    <span class="s2">"used"</span>: <span class="nb">false</span>,
+    <span class="s2">"id"</span>: <span class="s2">"545ea888646d6115461d0000"</span>,
+    <span class="s2">"object"</span>: <span class="s2">"invitation"</span>
   <span class="o">}</span>,
-  <span class="o">{</span> <span class="s2">"invitation"</span>:
-    <span class="o">{</span> <span class="s2">"recipient_email"</span> : <span class="s2">"user@example.com"</span>,
-      <span class="s2">"invitation_type"</span> : <span class="s2">"kitchen_customer"</span>,
-       <span class="s2">"used_at"</span> : <span class="s2">"2014-10-23T23:55:26-06:00"</span>, 
-       <span class="s2">"used"</span> : <span class="nb">true</span>,
-      <span class="s2">"id"</span> : <span class="s2">"544bf72a646d614812030000"</span>
-    <span class="o">}</span>
+  <span class="o">{</span>
+    <span class="s2">"recipient_email"</span>: <span class="s2">"user+2@gamil.com"</span>,
+    <span class="s2">"invitation_type"</span>: <span class="s2">"kitchen_open_invite"</span>,
+    <span class="s2">"used_at"</span>: <span class="s2">"2014-11-09T23:59:13-07:00"</span>,
+    <span class="s2">"meta_data"</span>: <span class="o">{}</span>,
+    <span class="s2">"used"</span>: <span class="nb">true</span>,
+    <span class="s2">"id"</span>: <span class="s2">"54606182646d61258a030000"</span>,
+    <span class="s2">"object"</span>: <span class="s2">"invitation"</span>
   <span class="o">}</span>
 <span class="o">]</span>
 </pre>
-<pre class="highlight ruby"><span class="no">Ramen</span><span class="p">.</span><span class="nf">list_invitations</span>
+<pre class="highlight ruby"><span class="n">invitations</span> <span class="o">=</span> <span class="no">Ramen</span><span class="o">::</span><span class="no">Invitation</span><span class="p">.</span><span class="nf">all</span>
 
-<span class="o">[</span>
-  <span class="p">{</span> <span class="s2">"invitation"</span><span class="p">:</span> 
-    <span class="p">{</span> <span class="s2">"recipient_email"</span> <span class="p">:</span> <span class="s2">"team_member@example.com"</span><span class="p">,</span>
-      <span class="s2">"invitation_type"</span> <span class="p">:</span> <span class="s2">"kitchen_team"</span><span class="p">,</span>
-      <span class="s2">"used_at"</span> <span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-      <span class="s2">"used"</span> <span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
-      <span class="s2">"id"</span> <span class="p">:</span> <span class="s2">"544bf712646d614812000000"</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="p">{</span> <span class="s2">"invitation"</span><span class="p">:</span>
-    <span class="p">{</span> <span class="s2">"recipient_email"</span> <span class="p">:</span> <span class="s2">"user@example.com"</span><span class="p">,</span>
-      <span class="s2">"invitation_type"</span> <span class="p">:</span> <span class="s2">"kitchen_customer"</span><span class="p">,</span>
-      <span class="s2">"used_at"</span> <span class="p">:</span> <span class="s2">"2014-10-23T23:55:26-06:00"</span><span class="p">,</span> 
-       <span class="s2">"used"</span> <span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
-      <span class="s2">"id"</span> <span class="p">:</span> <span class="s2">"544bf72a646d614812030000"</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="o">]</span>
+<span class="nb">puts</span> <span class="n">invitations</span><span class="p">.</span><span class="nf">inspect</span>
 
+<span class="o">[</span><span class="c1">#&lt;Ramen::Invitation:0x3fd621b79314 id=545ea888646d6115461d0000&gt; JSON: {</span>
+  <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"545ea888646d6115461d0000"</span><span class="p">,</span>
+  <span class="s2">"recipient_email"</span><span class="p">:</span> <span class="s2">"user+1@example.com"</span><span class="p">,</span>
+  <span class="s2">"invitation_type"</span><span class="p">:</span> <span class="s2">"kitchen_open_invite"</span><span class="p">,</span>
+  <span class="s2">"used_at"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s2">"meta_data"</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="s2">"used"</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
+  <span class="s2">"object"</span><span class="p">:</span> <span class="s2">"invitation"</span>
+<span class="p">},</span> <span class="c1">#&lt;Ramen::Invitation:0x3fd621b80434 id=54606182646d61258a030000&gt; JSON: {</span>
+  <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"54606182646d61258a030000"</span><span class="p">,</span>
+  <span class="s2">"recipient_email"</span><span class="p">:</span> <span class="s2">"user+2@gmail.com"</span><span class="p">,</span>
+  <span class="s2">"invitation_type"</span><span class="p">:</span> <span class="s2">"kitchen_open_invite"</span><span class="p">,</span>
+  <span class="s2">"used_at"</span><span class="p">:</span> <span class="s2">"2014-11-09T23:59:13-07:00"</span><span class="p">,</span>
+  <span class="s2">"meta_data"</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="s2">"used"</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+  <span class="s2">"object"</span><span class="p">:</span> <span class="s2">"invitation"</span>
+<span class="p">}</span><span class="o">]</span>
 </pre>
-<h3 id='http-request'>HTTP Request`</h3>
-<p><code class="prettyprint">GET /api/v1/projects/:project_slug/invitations</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Required API Parameters</td>
-<td><a href="#required-api-parameters">link to section</a></td>
-</tr>
-</tbody></table>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/invitations</code></p>
 <h3 id='http-response'>HTTP Response</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>invitation</td>
-<td>Object type</td>
-</tr>
-<tr>
-<td>recipient_email</td>
-<td>Email addresss invitation sent to</td>
-</tr>
-<tr>
-<td>invitation_type</td>
-<td>Invitation type</td>
-</tr>
-<tr>
-<td>used_at</td>
-<td>DateTime value at which invitation was used</td>
-</tr>
-<tr>
-<td>used</td>
-<td>Boolean indication if invitation has been used</td>
-</tr>
-<tr>
-<td>id</td>
-<td>Primary ID of the invitation object</td>
-</tr>
-</tbody></table>
-<h2 id='list-accepted-invites'>List accepted invites</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
-https://ramen.is/api/:version/projects/:project_slug/invitations/accepted?client_id&lt;id&gt;&amp;client_secret<span class="o">=</span>&lt;secret&gt;
-
-<span class="o">[</span>
-  <span class="o">{</span> <span class="s2">"invitation"</span>:
-    <span class="o">{</span> <span class="s2">"recipient_email"</span> : <span class="s2">"user@example.com"</span>,
-      <span class="s2">"invitation_type"</span> : <span class="s2">"kitchen_customer"</span>,
-       <span class="s2">"used_at"</span> : <span class="s2">"2014-10-23T23:55:26-06:00"</span>, 
-       <span class="s2">"used"</span> : <span class="nb">true</span>,
-      <span class="s2">"id"</span> : <span class="s2">"544bf72a646d614812030000"</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">]</span>
-</pre>
-<pre class="highlight ruby"><span class="no">Ramen</span><span class="p">.</span><span class="nf">accepted_invitations</span>
-
-<span class="o">[</span>
-  <span class="p">{</span> <span class="s2">"invitation"</span><span class="p">:</span>
-    <span class="p">{</span> <span class="s2">"recipient_email"</span> <span class="p">:</span> <span class="s2">"user@example.com"</span><span class="p">,</span>
-      <span class="s2">"invitation_type"</span> <span class="p">:</span> <span class="s2">"kitchen_customer"</span><span class="p">,</span>
-      <span class="s2">"used_at"</span> <span class="p">:</span> <span class="s2">"2014-10-23T23:55:26-06:00"</span><span class="p">,</span> 
-       <span class="s2">"used"</span> <span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
-      <span class="s2">"id"</span> <span class="p">:</span> <span class="s2">"544bf72a646d614812030000"</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="o">]</span>
-
-</pre>
-<h3 id='http-request'>HTTP Request`</h3>
-<p><code class="prettyprint">GET /api/v1/projects/:project_slug/invitations/accepted</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Required API Parameters</td>
-<td><a href="#required-api-parameters">link to section</a></td>
-</tr>
-</tbody></table>
-<h3 id='http-response'>HTTP Response</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>invitation</td>
-<td>Object type</td>
-</tr>
-<tr>
-<td>recipient_email</td>
-<td>Email addresss invitation sent to</td>
-</tr>
-<tr>
-<td>invitation_type</td>
-<td>Invitation type</td>
-</tr>
-<tr>
-<td>used_at</td>
-<td>DateTime value at which invitation was used</td>
-</tr>
-<tr>
-<td>used</td>
-<td>Boolean indication if invitation has been used</td>
-</tr>
-<tr>
-<td>id</td>
-<td>Primary ID of the invitation object</td>
-</tr>
-</tbody></table>
-<h2 id='list-waiting-invites'>List waiting invites</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
-https://ramen.is/api/:version/projects/:project_slug/invitations/waiting?client_id&lt;id&gt;&amp;client_secret<span class="o">=</span>&lt;secret&gt;
-
-<span class="o">[</span>
-  <span class="o">{</span> <span class="s2">"invitation"</span> : 
-    <span class="o">{</span> <span class="s2">"recipient_email"</span> : <span class="s2">"team_member@example.com"</span>,
-      <span class="s2">"invitation_type"</span> : <span class="s2">"kitchen_team"</span>,
-      <span class="s2">"used_at"</span> : null,
-      <span class="s2">"used"</span> : <span class="nb">false</span>,
-      <span class="s2">"id"</span> : <span class="s2">"544bf712646d614812000000"</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">]</span>
-</pre>
-<pre class="highlight ruby"><span class="no">Ramen</span><span class="p">.</span><span class="nf">list_invitations</span>
-
-<span class="o">[</span>
-  <span class="p">{</span> <span class="s2">"invitation"</span> <span class="p">:</span> 
-    <span class="p">{</span> <span class="s2">"recipient_email"</span> <span class="p">:</span> <span class="s2">"team_member@example.com"</span><span class="p">,</span>
-      <span class="s2">"invitation_type"</span> <span class="p">:</span> <span class="s2">"kitchen_team"</span><span class="p">,</span>
-      <span class="s2">"used_at"</span> <span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-      <span class="s2">"used"</span> <span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
-      <span class="s2">"id"</span> <span class="p">:</span> <span class="s2">"544bf712646d614812000000"</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="o">]</span>
-
-</pre>
-<h3 id='http-request'>HTTP Request`</h3>
-<p><code class="prettyprint">GET /api/v1/projects/:project_slug/invitations/waiting</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Required API Parameters</td>
-<td><a href="#required-api-parameters">link to section</a></td>
-</tr>
-</tbody></table>
-<h3 id='http-response'>HTTP Response</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>invitation</td>
-<td>Object type</td>
-</tr>
-<tr>
-<td>recipient_email</td>
-<td>Email addresss invitation sent to</td>
-</tr>
-<tr>
-<td>invitation_type</td>
-<td>Invitation type</td>
-</tr>
-<tr>
-<td>used_at</td>
-<td>DateTime value at which invitation was used</td>
-</tr>
-<tr>
-<td>used</td>
-<td>Boolean indication if invitation has been used</td>
-</tr>
-<tr>
-<td>id</td>
-<td>Primary ID of the invitation object</td>
-</tr>
-</tbody></table>
-<h2 id='resend-an-invitation'>Resend an invitation</h2><pre class="highlight shell"></pre>
+<p>Returns list of Invitation objects.</p>
+<h2 id='show'>Show</h2><pre class="highlight plaintext"></pre>
 <pre class="highlight ruby"></pre>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">POST url</code></p>
-<h3 id='json-body-parameters'>JSON Body Parameters</h3><h3 id='http-response'>HTTP Response</h3><h2 id='revoke-an-invitation'>Revoke an invitation</h2><pre class="highlight shell"></pre>
+<p><code class="prettyprint">GET api/v1/invitations/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns Invitation object or raises error.</p>
+<h2 id='update'>Update</h2><pre class="highlight plaintext"></pre>
 <pre class="highlight ruby"></pre>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">DELETE url</code></p>
-<h3 id='json-body-parameters'>JSON Body Parameters</h3><h3 id='http-response'>HTTP Response</h3><h1 id='community-members'>Community Members</h1>
-<p>TODO </p>
-<h1 id='labels'>Labels</h1>
-<p>TODO</p>
-<h1 id='segments'>Segments</h1>
-<p>TODO</p>
-
-          <h1 id='errors'>Errors</h1>
-<p><aside class="notice">This error section is stored in a separate file in <code class="prettyprint">includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the <code class="prettyprint">includes</code> folder and add them to the top of your <code class="prettyprint">index.md</code>&rsquo;s frontmatter. Files are included in the order listed.</aside></p>
-
-<p>The Kittn API uses the following error codes:</p>
+<p><code class="prettyprint">PUT api/v1/invitations/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns Invitation object or raises error.</p>
+<h2 id='delete'>Delete</h2><pre class="highlight shell"></pre>
+<pre class="highlight ruby"></pre>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">DELETE api/v1/invitations/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns JSON with deleted object&rsquo;s primary ID.</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Parameter</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>deleted</td>
+<td>Boolean confirmation of removal</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>id</td>
+<td>Primary ID of the invitation object</td>
 </tr>
 </tbody></table>
 
