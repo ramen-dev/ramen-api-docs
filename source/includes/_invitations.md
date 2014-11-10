@@ -1,20 +1,23 @@
 # Invitations
 
-## Create invitation
+## The Invitation Object
+<!-- TODO describe the object -->
+
+## Create
 
 ```shell
-curl \
+$ curl \
   -X POST \
   -H "Content-Type: application/json" \
   -H "RAMEN_CLIENT_ID: 123" \
   -H "RAMEN_CLIENT_SECRET: abc" \
-  -d '{ "recipient_email": "user@example.com", "invitation_type": "kitchen" }' \
+  -d '{ "recipient_email": "user@example.com", "invitation_type": "kitchen_open_invite" }' \
   https://ramen.is/api/v1/invitations
 
 HTTP 200
 {
   "recipient_email":"user@example.com",
-  "invitation_type":"kitchen",
+  "invitation_type":"kitchen_open_invite",
   "used_at":null,
   "meta_data":{},
   "used":false,
@@ -26,203 +29,152 @@ HTTP 200
 
 HTTP 404
 {
-  "error":"recipient_email already invited"
+  "error": 
+  {
+    "message":"recipient_email already invited",
+    "param":"recipient_email"
+  }
 }
 ```
 
 ```ruby
-Ramen::Invitation.create(recipient_email: "user@example.com", invitation_type: "kitchen")
+invitation = Ramen::Invitation.create(
+  recipient_email: "user@example.com", 
+  invitation_type: "kitchen_open_invite"
+)
 
+puts invitation.inspect
 
+#<Ramen::Invitation:0x3fd621b79314 id=54605542646d61117b020000> JSON: {
+  "id": "54605542646d61117b020000",
+  "recipient_email": "user@example.com",
+  "invitation_type": "kitchen",
+  "used_at": null,
+  "meta_data": {},
+  "used": false,
+  "object": "invitation"
+}
 
 --- or ---
 
-{"error":"recipient_email already invited"}
+# raises this error if recipient_email already invited
+Ramen::InvalidRequestError 
 ```
 
 ### HTTP Request
-
-`POST /api/v1/projects/:project_slug/invitations`
+`POST /api/v1/invitations`
 
 ### JSON Body Parameters
-
 Parameter | Description
 --------- | -----------
-Required API Parameters | <a href="#required-api-parameters">link to section</a>
-email | Email address (required)
-type | Invitation type (required). Possible values, "team", "champion", "kitchen", "kitchen_open_invite", "kitchen_team", "kitchen_customer"
-name | Name displayed on Ramen profile (optional). For example, "First Last".
-title | Title displayed on Ramen profile (optional)
-label | Apply Ramen label to invite and user when they join (optional)
-note | Text included in email (optional)
-
-### HTTP Response - Success
-
-Parameter | Description
-----------|------------
-status | sent
-
-
-### HTTP Response - Error
-
-Parameter | Description
-----------|------------
-error | email address already invited
-
-
-## Search for invitation
-
-```shell
-$ curl \
-https://ramen.is/api/:version/projects/:project_slug/invitations/find?client_id<id>&client_secret=<secret>&email=user%40example.com
-
-{ "invitation":
-  { "recipient_email" : "user@example.com",
-    "invitation_type" : "kitchen_customer",
-    "used_at" : null,
-    "used" : false,
-    "id" : "544bf72a646d614812030000"
-  }
-}
-```
-
-```ruby
-Ramen.find_invitation({email: 'user@example.com'})
-
-{ "invitation":
-  { "recipient_email" : "user@example.com",
-    "invitation_type" : "kitchen_customer",
-    "used_at" : null,
-    "used" : false,
-    "id" : "544bf72a646d614812030000"
-  }
-}
-```
-
-### HTTP Request`
-
-`GET /api/v1/projects/:project_slug/invitations/find`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-Required API Parameters | <a href="#required-api-parameters">link to section</a>
-email | Email address to search by
+recipient_email | Email address (required)
+invitation_type | Invitation type (required). Possible values, "team", "champion", "kitchen", "kitchen_open_invite", "org_open_invite", "kitchen_team", "kitchen_customer"
+meta_data | Hash for addtional attributes (optional)
+meta_data - name | Name displayed on Ramen profile (optional). For example, "First Last".
+meta_data - title | Title displayed on Ramen profile (optional)
+meta_data - segment | Apply Ramen label/segment to invite and user when they join (optional)
 
 ### HTTP Response
+Returns Invitation object or raises an error.
 
-Parameter | Description
-----------|------------
-invitation | Object type
-recipient_email | Email addresss invitation sent to 
-invitation_type | Invitation type
-used_at | DateTime value at which invitation was used
-used | Boolean indication if invitation has been used
-id | Primary ID of the invitation object 
-
-
-## List all invites
+## List
 
 ```shell
 $ curl \
-https://ramen.is/api/:version/projects/:project_slug/invitations?client_id<id>&client_secret=<secret>
+  -H "Content-Type: application/json" \
+  -H "RAMEN_CLIENT_ID: 123" \
+  -H "RAMEN_CLIENT_SECRET: abc" \
+  http://ramen.dev/api/v1/invitations
 
 [
-  { "invitation": 
-    { "recipient_email" : "team_member@example.com",
-      "invitation_type" : "kitchen_team",
-      "used_at" : null,
-      "used" : false,
-      "id" : "544bf712646d614812000000"
-    }
+  {
+    "recipient_email": "user+1@example.com",
+    "invitation_type": "kitchen_open_invite",
+    "used_at": null,
+    "meta_data": {},
+    "used": false,
+    "id": "545ea888646d6115461d0000",
+    "object": "invitation"
   },
-  { "invitation":
-    { "recipient_email" : "user@example.com",
-      "invitation_type" : "kitchen_customer",
-       "used_at" : "2014-10-23T23:55:26-06:00", 
-       "used" : true,
-      "id" : "544bf72a646d614812030000"
-    }
+  {
+    "recipient_email": "user+2@gamil.com",
+    "invitation_type": "kitchen_open_invite",
+    "used_at": "2014-11-09T23:59:13-07:00",
+    "meta_data": {},
+    "used": true,
+    "id": "54606182646d61258a030000",
+    "object": "invitation"
   }
 ]
 ```
 
 ```ruby
-Ramen.list_invitations
+invitations = Ramen::Invitation.all
 
-[
-  { "invitation": 
-    { "recipient_email" : "team_member@example.com",
-      "invitation_type" : "kitchen_team",
-      "used_at" : null,
-      "used" : false,
-      "id" : "544bf712646d614812000000"
-    }
-  },
-  { "invitation":
-    { "recipient_email" : "user@example.com",
-      "invitation_type" : "kitchen_customer",
-      "used_at" : "2014-10-23T23:55:26-06:00", 
-       "used" : true,
-      "id" : "544bf72a646d614812030000"
-    }
-  }
-]
+puts invitations.inspect
 
+[#<Ramen::Invitation:0x3fd621b79314 id=545ea888646d6115461d0000> JSON: {
+  "id": "545ea888646d6115461d0000",
+  "recipient_email": "user+1@example.com",
+  "invitation_type": "kitchen_open_invite",
+  "used_at": null,
+  "meta_data": {},
+  "used": false,
+  "object": "invitation"
+}, #<Ramen::Invitation:0x3fd621b80434 id=54606182646d61258a030000> JSON: {
+  "id": "54606182646d61258a030000",
+  "recipient_email": "user+2@gmail.com",
+  "invitation_type": "kitchen_open_invite",
+  "used_at": "2014-11-09T23:59:13-07:00",
+  "meta_data": {},
+  "used": true,
+  "object": "invitation"
+}]
 ```
 
-### HTTP Request`
-
-`GET /api/v1/projects/:project_slug/invitations`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-Required API Parameters | <a href="#required-api-parameters">link to section</a>
+### HTTP Request
+`GET /api/v1/invitations`
 
 ### HTTP Response
+Returns list of Invitation objects.
+
+## Show
+```curl
+```
+```ruby
+```
+
+### HTTP Request
+`GET api/v1/invitations/:id`
+
+### HTTP Response
+Returns Invitation object or raises error.
+
+## Update
+```curl
+```
+```ruby
+```
+### HTTP Request
+`PUT api/v1/invitations/:id`
+
+### HTTP Response
+Returns Invitation object or raises error.
+
+## Delete
+```shell
+```
+```ruby
+```
+
+### HTTP Request
+`DELETE api/v1/invitations/:id`
+
+### HTTP Response
+Returns JSON with deleted object's primary ID.
 
 Parameter | Description
 ----------|------------
-invitation | Object type 
-recipient_email | Email addresss invitation sent to 
-invitation_type | Invitation type
-used_at | DateTime value at which invitation was used
-used | Boolean indication if invitation has been used
+deleted | Boolean confirmation of removal
 id | Primary ID of the invitation object 
 
-
-## Resend an invitation
-
-```shell
-```
-
-```ruby
-```
-
-### HTTP Request
-
-`POST url`
-
-### JSON Body Parameters
-
-### HTTP Response
-
-
-## Revoke an invitation
-
-```shell
-```
-
-```ruby
-```
-
-### HTTP Request
-
-`DELETE url`
-
-### JSON Body Parameters
-
-### HTTP Response
