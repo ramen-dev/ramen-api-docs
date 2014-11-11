@@ -307,21 +307,21 @@ HTTP 404
 <p>None.</p>
 <h3 id='http-response'>HTTP Response</h3>
 <p>Returns list of Invitation objects.</p>
-<h2 id='retrieve-an-invitation'>Retrieve an invitation</h2><pre class="highlight plaintext">$ curl \
-  -H "Content-Type: application/json" \
-  -H "RAMEN_CLIENT_ID: 123" \
-  -H "RAMEN_CLIENT_SECRET: abc" \
+<h2 id='retrieve-an-invitation'>Retrieve an invitation</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_CLIENT_ID: 123"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_CLIENT_SECRET: abc"</span> <span class="se">\</span>
   https://ramen.is/api/v1/invitations/54606182646d61258a030000
 
-{
-  "recipient_email": "user+2@gamil.com",
-  "invitation_type": "kitchen_open_invite",
-  "used_at": "2014-11-09T23:59:13-07:00",
-  "meta_data": {},
-  "used": true,
-  "id": "54606182646d61258a030000",
-  "object": "invitation"
-}
+<span class="o">{</span>
+  <span class="s2">"recipient_email"</span>: <span class="s2">"user+2@gamil.com"</span>,
+  <span class="s2">"invitation_type"</span>: <span class="s2">"kitchen_open_invite"</span>,
+  <span class="s2">"used_at"</span>: <span class="s2">"2014-11-09T23:59:13-07:00"</span>,
+  <span class="s2">"meta_data"</span>: <span class="o">{}</span>,
+  <span class="s2">"used"</span>: <span class="nb">true</span>,
+  <span class="s2">"id"</span>: <span class="s2">"54606182646d61258a030000"</span>,
+  <span class="s2">"object"</span>: <span class="s2">"invitation"</span>
+<span class="o">}</span>
 </pre>
 <pre class="highlight ruby"><span class="n">invitation</span> <span class="o">=</span> <span class="no">Ramen</span><span class="o">::</span><span class="no">Invitation</span><span class="p">.</span><span class="nf">retrieve</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="s2">"54606182646d61258a030000"</span><span class="p">)</span>
 
