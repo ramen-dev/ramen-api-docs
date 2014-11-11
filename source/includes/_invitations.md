@@ -181,7 +181,7 @@ None.
 Returns list of Invitation objects.
 
 ## Retrieve an invitation
-```curl
+```shell
 $ curl \
   -H "Content-Type: application/json" \
   -H "RAMEN_CLIENT_ID: 123" \
