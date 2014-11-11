@@ -38,6 +38,14 @@ under the License.
         });
       </script>
     <% end %>
+
+    <style type="text/css">
+      /* Ramen customizations */
+      .tocify-wrapper > img {
+        width: 85%;
+        padding: 18px;
+      }
+    </style>
   </head>
 
   <body class="<%= page_classes %>">
@@ -48,7 +56,7 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
+      <%= image_tag "logo-teal.png" %>
       <% if language_tabs %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
