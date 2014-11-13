@@ -4,7 +4,7 @@ language_tabs:
   - shell
   - ruby
 includes:
-  - authentication
+  #- authentication
   #- project
   #- organization
   - invitations
@@ -16,7 +16,16 @@ search: true
 ---
 
 # Introduction
-Welcome to the Ramen API! 
+Welcome to the Ramen API.
+
+<aside class="warning">
+__We're in the process of building out the API. These docs serve as the medium to
+discuss the technical API implementation before coding it up.__
+</aside>
+
+We're using our own product (Ramen!) to plan out the API's features and functionality. 
+We'd love to get your input so we can build a powerful yet simple API. 
+Join us here, [the Ramen API Project](https://align.ramen.is/projects/api/kitchen).
 
 <!-- see ramen-api-docs/source/includes/*.md for content -->
 
