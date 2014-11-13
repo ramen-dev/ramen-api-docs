@@ -50,7 +50,16 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Ramen API! </p>
+<p>Welcome to the Ramen API.</p>
+
+<p><aside class="warning">
+<strong>We&rsquo;re in the process of building out the API. These docs serve as the medium to
+discuss the technical API implementation before coding it up.</strong>
+</aside></p>
+
+<p>We&rsquo;re using our own product (Ramen!) to plan out the API&rsquo;s features and functionality. 
+We&rsquo;d love to get your input so we can build a powerful yet simple API. 
+Join us here, <a href="https://align.ramen.is/projects/api/kitchen">the Ramen API Project</a>.</p>
 
 <!-- see ramen-api-docs/source/includes/*.md for content -->
 
@@ -60,45 +69,6 @@
 </script>
 
 <script src="https://cdn.ramen.is/assets/ramen.js" async></script>
-
-          <h1 id='authentication'>Authentication</h1><pre class="highlight shell">curl <span class="se">\</span>
-  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -H <span class="s2">"RAMEN_CLIENT_ID: 123"</span> <span class="se">\</span>
-  -H <span class="s2">"RAMEN_CLIENT_SECRET: abc"</span> <span class="se">\</span>
-  https://ramen.is/api/v1/....
-</pre>
-<pre class="highlight ruby"><span class="no">Ramen</span><span class="p">.</span><span class="nf">client_id</span> <span class="o">=</span> <span class="s2">"your_client_id"</span>
-<span class="no">Ramen</span><span class="p">.</span><span class="nf">client_secret</span> <span class="o">=</span> <span class="s2">"your_client_secret"</span>
-</pre>
-
-<p>Ramen uses API keys to authenticate API requests. </p>
-
-<p>You can create and revoke API keys within each Kitchen on the API keys page, 
-<code class="prettyprint">/projects/:project-slug/kitchen/api_keys</code>. Each API key is scoped to only 
-access its respective Kitchen. You cannot use one API key to access 
-two different Kitchens.</p>
-
-<p>If you&rsquo;re using the API through simple HTTP requests, you&rsquo;ll need to provide 
-the <code class="prettyprint">client_id</code> and <code class="prettyprint">client_secret</code> in each request as HTTP headers.</p>
-
-<p>If you&rsquo;re using the Ruby client, you need to set the <code class="prettyprint">client_id</code> and 
-<code class="prettyprint">client_secret</code> at initialization.</p>
-
-<table><thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>client_id</td>
-<td>Api Key client_id</td>
-</tr>
-<tr>
-<td>client_secret</td>
-<td>Api Key client_secret</td>
-</tr>
-</tbody></table>
 
           <h1 id='invitations'>Invitations</h1><h2 id='the-invitation-object'>The invitation object</h2><pre class="highlight shell">EXAMPLE OBJECT
 
