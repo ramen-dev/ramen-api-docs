@@ -5,8 +5,8 @@ language_tabs:
   - ruby
 includes:
   #- authentication
-  #- project
-  #- organization
+  - projects
+  - organization
   - invitations
   #- labels
   #- features
