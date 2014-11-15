@@ -5,12 +5,13 @@ language_tabs:
   - ruby
 includes:
   #- authentication
-  - projects
   - organization
   - invitations
+  - community_members
+  - projects
+  - features
+  - updates
   #- labels
-  #- features
-  #- community_members
   #- segments
 search: true
 ---
