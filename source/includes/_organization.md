@@ -14,7 +14,7 @@ Open Questions
   Weston - don't think so.
   Organizations feel like "long term" account setup stuff. I could be wrong since I'm not eating Ramen full time during the week. 
 
-- Regarding `GET /api/v1/organization`. 
+- Regarding `GET /api/v1/organization`.
   From Weston.
   Since the Api Key is scoped per organization, for a `GET /api/v1/organization` we can look up the Organization by the API and NOT make the API call include the Organization Id.
   Is this a good idea? 
@@ -26,52 +26,39 @@ Open Questions
 EXAMPLE OBJECT
 
 {
-  "id" : "123"
-}
-```
+  "id" : "123", 
+  "site_url": "", 
+  "cname": "", 
+  "publicly_visible": "", 
+  "trial_end_date": "", 
+  "plan": "", 
+  "open_invite_enabled": "",
+  "create_at": "", 
+  "updated_at": "",  
 
-```ruby
-EXAMPLE OBJECT
+  // --- ATTRIBUTES TO NOT EXPOSE VIA API
 
-#<Ramen::Organization:0x3fd621b80434 id=54123> JSON: {
-  "id": "123"
+  "user_id": "", 
+  "logo": ""
 }
 ```
 
 Attribute           | Description
 --------------------|------------
-id                  | string. Primary ID
-object              | string. Value is "organization"
-name                | string. Name of organization.
+** rough draft. see example object. **
 
 ## Retrieve an organization
 
 ```shell
 $ curl \
   -H "Content-Type: application/json" \
-  -H "RAMEN_CLIENT_ID: 123" \
-  -H "RAMEN_CLIENT_SECRET: abc" \
+  -H "RAMEN_API_KEY: abc" \
   https://ramen.is/api/v1/organization
-
-{
-  "id":"54123",
-  "name":"Ramen", 
-  "object":"organization"
-}
 ```
 
 ```ruby
-# don't need `id` since you default to organization associated with Api Key
-organization = Ramen::Organization.retrieve()
-
-organization.inspect
-
-#<Ramen::Organization:0x3fd621b80434 id=54123> JSON: {
-  "id": "545ea888646d6115461d0000",
-  "name": "Ramen API",
-  "object": "project"
-}
 ```
+
 ### HTTP Request
 `GET /api/v1/organization`
 
@@ -88,7 +75,7 @@ Returns an organization object or error.
 ```
 
 ### HTTP Request
-`PUT /api/v1/organizations/:id`
+`PUT /api/v1/organization`
 
 ### HTTP Response
 Returns updated organization object or error.

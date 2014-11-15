@@ -5,25 +5,54 @@
 EXAMPLE OBJECT
 
 {
-  "name" : "Ramen API"
+  "name": "",
+  "logo_url": "",
+  "site_url": "",
+  "tagline": "",
+  "description": "",
+  "location": "",
+  "tags": "",
+  "tech_tags": "",
+  "slug": "",
+  "og_share_image_url": "",
+  "twitter": "",
+  "facebook": "",
+  "share_message": "",
+  "feature_tags": "",
+  "publicly_visible": "",
+
+  // --- ATTRIBUTES TO NOT EXPOSE VIA API
+
+  "plan": "",
+  "microwave": "",
+  "risks": "",
+  "goal_in_cents": "",
+  "end_date": "",
+  "hero_url": "",
+  "noodle_bar_image_url": "",
+  "marketplace_sort": "",
+  "force_enable_kitchen": "",
+  "noodle_bar": "",
+  "successful": "",
+  "failed": "",
+  "video_url": "",
+  "video_webm_url": "",
+  "discount_percent": "",
+  "discount_amount": "",
+  "open_invite_enabled": "",
+  "kitchen_only": "",
+  "ramen_event_received_at": "",
+  "priority": "",
+  "ask_for_linkedin": ""
 }
 ```
 
 ```ruby
-EXAMPLE OBJECT
-
-#<Ramen::Project:0x3fd621b79314 id=54605542646d61117b020000> JSON: {
-  "id": "54605542646d61117b020000",
-  "name": "Ramen API",
-  "object": "project"
 ```
 
 Attribute           | Description
 --------------------|------------
-id                  | string. Primary ID
-object              | string. Value is "project"
-name                | string. Name of project.
-
+** rough draft. see example object. **
 
 ## Create a project
 
@@ -31,44 +60,14 @@ name                | string. Name of project.
 $ curl \
   -X POST \
   -H "Content-Type: application/json" \
-  -H "RAMEN_CLIENT_ID: 123" \
-  -H "RAMEN_CLIENT_SECRET: abc" \
+  -H "RAMEN_API_KEY: 123" \
   -d '{ "name": "Ramen API" }' \
   https://ramen.is/api/v1/projects
-
-HTTP 200
 {
-  "name":"Ramen API",
-  "id":"545ea888646d6115461d0000",
-  "object":"project"
-}
-
---- or ---
-
-HTTP 404
-{
-  "error": 
-  {
-    "message":"project could not be created"
-  }
-}
-```
-
-```ruby
-project = Ramen::Project.create(name: "Ramen API")
-
-puts project.inspect
-
-#<Ramen::Project:0x3fd621b79314 id=54605542646d61117b020000> JSON: {
-  "id": "54605542646d61117b020000",
-  "name":"Ramen API"
+  "name": "Ramen API",
+  "id": "545ea888646d6115461d0000",
   "object": "project"
 }
-
---- or ---
-
-# raises error
-#<Ramen::InvalidRequestError: (Status 404) recipient_email already invited>
 ```
 
 ### HTTP Request
@@ -87,8 +86,7 @@ Returns Project object or raises an error.
 ```shell
 $ curl \
   -H "Content-Type: application/json" \
-  -H "RAMEN_CLIENT_ID: 123" \
-  -H "RAMEN_CLIENT_SECRET: abc" \
+  -H "RAMEN_API_KEY: 123" \
   https://ramen.is/api/v1/projects
 
 [
@@ -111,19 +109,6 @@ $ curl \
 ```
 
 ```ruby
-projects = Ramen::Project.all
-
-puts projects.inspect
-
-[#<Ramen::Project:0x3fd621b79314 id=545ea888646d6115461d0000> JSON: {
-  "id": "545ea888646d6115461d0000",
-  "name": "Ramen API",
-  "object": "project"
-}, #<Ramen::Project:0x3fd621b80434 id=54606182646d61258a030000> JSON: {
-  "id": "54606182646d61258a030000",
-  "name": "Ramen",
-  "object": "project"
-}]
 ```
 
 ### HTTP Request
@@ -139,8 +124,7 @@ Returns list of Project objects.
 ```shell
 $ curl \
   -H "Content-Type: application/json" \
-  -H "RAMEN_CLIENT_ID: 123" \
-  -H "RAMEN_CLIENT_SECRET: abc" \
+  -H "RAMEN_API_KEY: 123" \
   https://ramen.is/api/v1/projects/545ea888646d6115461d0000
 
 {
@@ -151,19 +135,10 @@ $ curl \
 ```
 
 ```ruby
-project = Ramen::Invitation.retrieve(id: "545ea888646d6115461d0000")
-
-project.inspect
-
-#<Ramen::Project:0x3fd621b80434 id=545ea888646d6115461d0000> JSON: {
-  "id": "545ea888646d6115461d0000",
-  "name": "Ramen API",
-  "object": "project"
-}
 ```
 
 ### HTTP Request
-`GET api/v1/projects/:id`
+`GET /api/v1/projects/:id`
 
 ### Arguments 
 Parameters  | &nbsp;
@@ -178,8 +153,7 @@ Returns Project object or raises error.
 $ curl \
   -X PUT
   -H "Content-Type: application/json" \
-  -H "RAMEN_CLIENT_ID: 123" \
-  -H "RAMEN_CLIENT_SECRET: abc" \
+  -H "RAMEN_API_KEY: 123" \
   -d '{ "name": "Ramen API v2"}'
   https://ramen.is/api/v1/projects/545ea888646d6115461d0000
 
@@ -191,21 +165,10 @@ $ curl \
 ```
 
 ```ruby
-project = Ramen::Project.retrieve(id: "54606182646d61258a030000")
-project.name = "Ramen API v2"
-project.save
-
-project.inspect
-
-#<Ramen::Project:0x3fd621b80434 id=54606182646d61258a030000> JSON: {
-  "id": "54606182646d61258a030000",
-  "name": "Ramen API v2",
-  "object": "project"
-}
 ```
 
 ### HTTP Request
-`PUT api/v1/projects/:id`
+`PUT /api/v1/projects/:id`
 
 ### Arguments
 Same arguments as creating a project. See <a href="#create-a-project">Create a project</a>
@@ -218,8 +181,7 @@ Returns Project object or raises error.
 $ curl \
   -X DELETE
   -H "Content-Type: application/json" \
-  -H "RAMEN_CLIENT_ID: 123" \
-  -H "RAMEN_CLIENT_SECRET: abc" \
+  -H "RAMEN_API_KEY: 123" \
   https://ramen.is/api/v1/project/54606182646d61258a030000
 
 {
@@ -229,19 +191,10 @@ $ curl \
 ```
 
 ```ruby
-project = Ramen::Project.retrieve(id: "54606182646d61258a030000")
-invitation.delete
-
-invitation.inspect
-
-#<Ramen::Project:0x3fd621b80434 id=54606182646d61258a030000> JSON: {
-  "deleted": true,
-  "id": "54606182646d61258a030000"
-}
 ```
 
 ### HTTP Request
-`DELETE api/v1/projects/:id`
+`DELETE /api/v1/projects/:id`
 
 ### Arguments
 Parameters  | &nbsp;
