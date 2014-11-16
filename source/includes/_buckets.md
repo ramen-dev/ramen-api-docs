@@ -1,24 +1,28 @@
 # Buckets
 
+## The bucket object
+
 ```shell
 EXAMPLE OBJECT
 
 {
   "id": "",
+  "object": "bucket",
   "created_at": "",
   "updated_at": "",
   "project_id": "",
   "name": "",
   "completion_date": ""
+
+  // --- ATTRIBUTES TO NOT EXPOSE VIA API
+
+  none
 }
 ```
 
 Attribute | Description
 ----------|------------
-project_id | string. Associated project.
-name | string. Bucket name.
-completion_date | datetime. defaults to nil.
-
+** TODO. describe attributes. **
 
 
 ## Create a bucket 
@@ -34,7 +38,7 @@ name | required.
 completion_date | optional.
 
 ### HTTP Response
-Returns created bucket object or error(s).
+Returns created Bucket object or error(s).
 
 
 
@@ -44,7 +48,7 @@ Returns created bucket object or error(s).
 `GET /api/v1/projects/:project_id/buckets`
 
 ### HTTP Response
-Returns array of bucket objects or error(s).
+Returns an array of Bucket objects or error(s).
 
 
 
@@ -54,7 +58,7 @@ Returns array of bucket objects or error(s).
 `GET /api/v1/projects/:project_id/buckets/:id`
 
 ### HTTP Response
-Returns a bucket object or error(s).
+Returns Bucket object or error(s).
 
 
 
@@ -64,7 +68,7 @@ Returns a bucket object or error(s).
 `PUT /api/v1/projects/:project_id/buckets/:id`
 
 ### HTTP Response
-Returns updated bucket object or error(s).
+Returns updated Bucket object or error(s).
 
 
 
@@ -74,5 +78,4 @@ Returns updated bucket object or error(s).
 `DELETE /api/v1/projects/:project_id/buckets/:id`
 
 ### HTTP Response
-Returns JSON with deleted object's primary ID.
-
+Returns JSON with deleted buckets's id.

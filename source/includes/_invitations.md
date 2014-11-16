@@ -6,15 +6,15 @@ EXAMPLE OBJECT
 
 {
   "id":"545ea888646d6115461d0000",
-  "object":"invitation", 
-  "recipient_email":"",
-  "invitation_type":"org_team",
-  "used_at":null,
-  "used":false,
-  "meta_data":{ "title":"product developer", "name": "User", "segmet": "beta"},
-  "note",
+  "object": "invitation",
   "create_at": "", 
-  "updated_at": "",   
+  "updated_at": "", 
+  "recipient_email": "",
+  "invitation_type": "org_team",
+  "used_at": null,
+  "used": false,
+  "meta_data": { "title":"product developer", "name": "User", "segmet": "beta"},
+  "note": "",
 
   // --- ATTRIBUTES TO NOT EXPOSE VIA API
 
@@ -29,6 +29,8 @@ EXAMPLE OBJECT
 
 Attribute           | Description
 --------------------|------------
+** TODO. describe attributes. **
+
 <!-- 
 id                  | string. Primary ID
 object              | string. Value is "invitation"
@@ -41,6 +43,8 @@ meta_data - name    | string. Name displayed on Ramen profile.
 meta_data - title   | string. Title displayed on Ramen profile.
 meta_data - segment | string. Ramen segment applied to invite. 
 -->
+
+
 
 
 ## Create an invitation
@@ -114,7 +118,9 @@ meta_data - title   | optional.
 meta_data - segment | optional.
 
 ### HTTP Response
-Returns Invitation object or raises an error.
+Returns Invitation object or raises error(s).
+
+
 
 ## List invitations
 
@@ -177,7 +183,9 @@ puts invitations.inspect
 None.
 
 ### HTTP Response
-Returns list of Invitation objects.
+Returns an array of Invitation objects or error(s).
+
+
 
 ## Retrieve an invitation
 ```shell
@@ -222,7 +230,9 @@ Parameters  | &nbsp;
 id          | required.
 
 ### HTTP Response
-Returns Invitation object or raises error.
+Returns an Invitation object or error(s).
+
+
 
 ## Update an invitation
 ```shell
@@ -269,7 +279,9 @@ invitation.inspect
 Same arguments as creating an invitation. See <a href="#create-an-invitation">Create an invitation</a>
 
 ### HTTP Response
-Returns Invitation object or raises error.
+Returns an Invitation object or error(s).
+
+
 
 ## Delete an invitation
 ```shell
@@ -299,11 +311,6 @@ invitation.inspect
 
 ### HTTP Request
 `DELETE /api/v1/invitations/:id`
-
-### Arguments
-Parameters  | &nbsp;
-------------|-------
-id          | required.
 
 ### HTTP Response
 Returns JSON with deleted object's primary ID.

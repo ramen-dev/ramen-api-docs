@@ -1,10 +1,15 @@
 # Project
 
 ## The project object
+
 ```shell 
 EXAMPLE OBJECT
 
 {
+  "id": "",
+  "object": "project",
+  "created_at": "",
+  "updated_at": "",
   "name": "",
   "logo_url": "",
   "site_url": "",
@@ -47,12 +52,9 @@ EXAMPLE OBJECT
 }
 ```
 
-```ruby
-```
-
-Attribute           | Description
---------------------|------------
-** rough draft. see example object. **
+Attribute | Description
+----------|------------
+** TODO. describe attributes. **
 
 ## Create a project
 

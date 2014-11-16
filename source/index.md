@@ -1,19 +1,23 @@
 ---
 title: Ramen API Reference
+
 language_tabs:
   - shell
   - ruby
+
 includes:
-  #- authentication
+  - authentication
   - organization
   - invitations
   - community_members
   - projects
   - buckets
   - features
+  - comments
   - updates
   #- labels
   #- segments
+
 search: true
 ---
 

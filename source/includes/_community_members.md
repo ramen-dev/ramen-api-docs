@@ -1,15 +1,19 @@
 # Community Members
 
+## The community member object
+
 ```shell
-{
+{ 
+  "id", 
+  "object": "community_member",
+  "created_at": "", 
+  "updated_at": "", 
   "joined_at": "",
   "type": "",
   "title": "",
   "short_bio": "",
   "last_active_at": "",
   "segments": "",
-  "created_at": "", 
-  "updated_at": ""
 
   // --- ATTRIBUTES TO NOT EXPOSE VIA API
 
@@ -23,41 +27,52 @@
 
 Attribute | Description
 ----------|------------
-** rough draft. see example object. **
+** TODO. describe attributes. **
+
+
 
 ## Create a community member
 
-Community Members are created when a user accepts an invitation.
+Community Members are created when a user accepts an invitation. Therefore,
+to create a community member you'll need to invite them to join you on the
+Ramen platform. Check out <a href="#create-an-invitation">creating invitations.</a>
+
+
+
+## List all community members
+
+### HTTP Request
+`GET /api/v1/community_members`
+
+### HTTP Response
+Returns an array of Community Member objects or error(s).
+
+
 
 ## Retrieve a community member
-
-```shell
-```
 
 ### HTTP Request 
 `GET /api/v1/community_members/:id`
 
 ### HTTP Response
-Returns a community member object or raises an error.
+Returns Community Member object or error(s).
+
+
 
 ## Update a community member
-
-```shell
-```
 
 ### HTTP Request 
 `PUT /api/v1/community_members/:id`
 
 ### HTTP Response
-Returns updated community member or returns an error.
+Returns an updated Community Member object or error(s).
+
+
 
 ## Delete a community member
-
-```shell
-```
 
 ### HTTP Request 
 `DELETE /api/v1/community_members/:id`
 
 ### HTTP Response
-Returns JSON with deleted object's primary ID.
+Returns JSON with deleted Community Members's id.
