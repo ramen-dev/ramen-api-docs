@@ -9,6 +9,7 @@ includes:
   - invitations
   - community_members
   - projects
+  - buckets
   - features
   - updates
   #- labels
