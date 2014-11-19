@@ -70,28 +70,39 @@ Join us here, <a href="https://align.ramen.is/projects/api/kitchen">the Ramen AP
 
 <script src="https://cdn.ramen.is/assets/ramen.js" async></script>
 
-          <h1 id='invitations'>Invitations</h1><h2 id='the-invitation-object'>The invitation object</h2><pre class="highlight shell">EXAMPLE OBJECT
+          <h1 id='authentication'>Authentication</h1><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_API_KEY: 123"</span> <span class="se">\</span>
+  https://ramen.is/api/v1/....
+</pre>
+<pre class="highlight ruby"><span class="no">Ramen</span><span class="p">.</span><span class="nf">api_key</span> <span class="o">=</span> <span class="s2">"your_api_key"</span>
+</pre>
+
+<p>Ramen uses API keys to authenticate API requests. </p>
+
+<p>You can create and revoke API Keys within each Organization on the API keys 
+page, <code class="prettyprint">https://your-organization.ramen.is/api_keys</code>. The Api Key will allow 
+you to interact with all objects within that organization.</p>
+
+          <h1 id='organization'>Organization</h1><h2 id='the-organization-object'>The organization object</h2><pre class="highlight shell">EXAMPLE OBJECT
 
 <span class="o">{</span>
-  <span class="s2">"recipient_email"</span>:<span class="s2">"user@example.com"</span>,
-  <span class="s2">"invitation_type"</span>:<span class="s2">"kitchen_open_invite"</span>,
-  <span class="s2">"used_at"</span>:null,
-  <span class="s2">"meta_data"</span>:<span class="o">{</span> <span class="s2">"title"</span>:<span class="s2">"product developer"</span>, <span class="s2">"name"</span>: <span class="s2">"User"</span>, <span class="s2">"segmet"</span>: <span class="s2">"beta"</span><span class="o">}</span>,
-  <span class="s2">"used"</span>:false,
-  <span class="s2">"id"</span>:<span class="s2">"545ea888646d6115461d0000"</span>,
-  <span class="s2">"object"</span>:<span class="s2">"invitation"</span>
-<span class="o">}</span>
-</pre>
-<pre class="highlight ruby"><span class="no">EXAMPLE</span> <span class="no">OBJECT</span>
+  <span class="s2">"id"</span> : <span class="s2">""</span>, 
+  <span class="s2">"object"</span>: <span class="s2">""</span>,
+  <span class="s2">"create_at"</span>: <span class="s2">""</span>, 
+  <span class="s2">"updated_at"</span>: <span class="s2">""</span>,  
+  <span class="s2">"site_url"</span>: <span class="s2">""</span>, 
+  <span class="s2">"cname"</span>: <span class="s2">""</span>, 
+  <span class="s2">"publicly_visible"</span>: <span class="s2">""</span>, 
+  <span class="s2">"trial_end_date"</span>: <span class="s2">""</span>, 
+  <span class="s2">"plan"</span>: <span class="s2">""</span>, 
+  <span class="s2">"open_invite_enabled"</span>: <span class="s2">""</span>,
 
-<span class="c1">#&lt;Ramen::Invitation:0x3fd621b79314 id=54605542646d61117b020000&gt; JSON: {</span>
-  <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"54605542646d61117b020000"</span><span class="p">,</span>
-  <span class="s2">"recipient_email"</span><span class="p">:</span> <span class="s2">"user@example.com"</span><span class="p">,</span>
-  <span class="s2">"invitation_type"</span><span class="p">:</span> <span class="s2">"kitchen_open_invite"</span><span class="p">,</span>
-  <span class="s2">"used_at"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-  <span class="s2">"meta_data"</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"title"</span><span class="ss">:"product developer"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"User"</span><span class="p">,</span> <span class="s2">"segmet"</span><span class="p">:</span> <span class="s2">"beta"</span><span class="p">},</span>
-  <span class="s2">"used"</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
-  <span class="s2">"object"</span><span class="p">:</span> <span class="s2">"invitation"</span>
+  // --- ATTRIBUTES TO NOT EXPOSE VIA API
+
+  <span class="s2">"user_id"</span>: <span class="s2">""</span>, 
+  <span class="s2">"logo"</span>: <span class="s2">""</span>
+<span class="o">}</span>
 </pre>
 
 <table><thead>
@@ -100,59 +111,82 @@ Join us here, <a href="https://align.ramen.is/projects/api/kitchen">the Ramen AP
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>id</td>
-<td>string. Primary ID</td>
-</tr>
-<tr>
-<td>object</td>
-<td>string. Value is &ldquo;invitation&rdquo;</td>
-</tr>
-<tr>
-<td>recipient_email</td>
-<td>string. Email address for invitation.</td>
-</tr>
-<tr>
-<td>invitation_type</td>
-<td>string. Must be one of: &ldquo;team&rdquo;, &ldquo;champion&rdquo;, &ldquo;kitchen&rdquo;, &ldquo;kitchen_open_invite&rdquo;, &ldquo;org_open_invite&rdquo;, &ldquo;kitchen_team&rdquo;, &ldquo;kitchen_customer&rdquo;.</td>
-</tr>
-<tr>
-<td>used_at</td>
-<td>timestamp. When used.</td>
-</tr>
-<tr>
-<td>used</td>
-<td>boolean.</td>
-</tr>
-<tr>
-<td>meta_data</td>
-<td>hash. Hash containing addition fields.</td>
-</tr>
-<tr>
-<td>meta_data - name</td>
-<td>string. Name displayed on Ramen profile.</td>
-</tr>
-<tr>
-<td>meta_data - title</td>
-<td>string. Title displayed on Ramen profile.</td>
-</tr>
-<tr>
-<td>meta_data - segment</td>
-<td>string. Ramen segment applied to invite.</td>
-</tr>
 </tbody></table>
+
+<p>** rough draft. see example object. **</p>
+<h2 id='retrieve-an-organization'>Retrieve an organization</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_API_KEY: abc"</span> <span class="se">\</span>
+  https://ramen.is/api/v1/organization
+</pre>
+<pre class="highlight ruby"></pre>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/organization</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns an Organization object or error(s).</p>
+<h2 id='update-an-orgnization'>Update an orgnization</h2><pre class="highlight shell"></pre>
+<pre class="highlight ruby"></pre>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">PUT /api/v1/organization</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns an updated Organization object or error(s).</p>
+
+          <h1 id='invitations'>Invitations</h1><h2 id='the-invitation-object'>The invitation object</h2><pre class="highlight shell">EXAMPLE OBJECT
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>:<span class="s2">"545ea888646d6115461d0000"</span>,
+  <span class="s2">"object"</span>: <span class="s2">"invitation"</span>,
+  <span class="s2">"create_at"</span>: <span class="s2">""</span>, 
+  <span class="s2">"updated_at"</span>: <span class="s2">""</span>, 
+  <span class="s2">"recipient_email"</span>: <span class="s2">""</span>,
+  <span class="s2">"invitation_type"</span>: <span class="s2">"org_team"</span>,
+  <span class="s2">"used_at"</span>: null,
+  <span class="s2">"used"</span>: <span class="nb">false</span>,
+  <span class="s2">"meta_data"</span>: <span class="o">{</span> <span class="s2">"title"</span>:<span class="s2">"product developer"</span>, <span class="s2">"name"</span>: <span class="s2">"User"</span>, <span class="s2">"segmet"</span>: <span class="s2">"beta"</span><span class="o">}</span>,
+  <span class="s2">"note"</span>: <span class="s2">""</span>,
+
+  // --- ATTRIBUTES TO NOT EXPOSE VIA API
+
+  <span class="s2">"emails_left_to_send"</span>; <span class="s2">""</span>. 
+  <span class="s2">"user_id"</span>, 
+  <span class="s2">"target_id"</span>,
+<span class="o">}</span>
+</pre>
+<pre class="highlight ruby"></pre>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>** TODO. describe attributes. **</p>
+
+<!-- 
+id                  | string. Primary ID
+object              | string. Value is "invitation"
+recipient_email     | string. Email address for invitation.
+invitation_type     | string. Must be one of: "org_customer", "org_team".
+used_at             | timestamp. When used.
+used                | boolean.
+meta_data           | hash. Hash containing addition fields.
+meta_data - name    | string. Name displayed on Ramen profile.
+meta_data - title   | string. Title displayed on Ramen profile.
+meta_data - segment | string. Ramen segment applied to invite. 
+-->
 <h2 id='create-an-invitation'>Create an invitation</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
   -X POST <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -H <span class="s2">"RAMEN_CLIENT_ID: 123"</span> <span class="se">\</span>
-  -H <span class="s2">"RAMEN_CLIENT_SECRET: abc"</span> <span class="se">\</span>
-  -d <span class="s1">'{ "recipient_email": "user@example.com", "invitation_type": "kitchen_open_invite" }'</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_API_KEY: 123"</span> <span class="se">\</span>
+  -d <span class="s1">'{ "recipient_email": "user@example.com", "invitation_type": "org_customer" }'</span> <span class="se">\</span>
   https://ramen.is/api/v1/invitations
 
 HTTP 200
 <span class="o">{</span>
   <span class="s2">"recipient_email"</span>:<span class="s2">"user@example.com"</span>,
-  <span class="s2">"invitation_type"</span>:<span class="s2">"kitchen_open_invite"</span>,
+  <span class="s2">"invitation_type"</span>:<span class="s2">"org_customer"</span>,
   <span class="s2">"used_at"</span>:null,
   <span class="s2">"meta_data"</span>:<span class="o">{}</span>,
   <span class="s2">"used"</span>:false,
@@ -173,7 +207,7 @@ HTTP 404
 </pre>
 <pre class="highlight ruby"><span class="n">invitation</span> <span class="o">=</span> <span class="no">Ramen</span><span class="o">::</span><span class="no">Invitation</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span>
   <span class="ss">recipient_email: </span><span class="s2">"user@example.com"</span><span class="p">,</span> 
-  <span class="ss">invitation_type: </span><span class="s2">"kitchen_open_invite"</span>
+  <span class="ss">invitation_type: </span><span class="s2">"org_customer"</span>
 <span class="p">)</span>
 
 <span class="nb">puts</span> <span class="n">invitation</span><span class="p">.</span><span class="nf">inspect</span>
@@ -181,7 +215,7 @@ HTTP 404
 <span class="c1">#&lt;Ramen::Invitation:0x3fd621b79314 id=54605542646d61117b020000&gt; JSON: {</span>
   <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"54605542646d61117b020000"</span><span class="p">,</span>
   <span class="s2">"recipient_email"</span><span class="p">:</span> <span class="s2">"user@example.com"</span><span class="p">,</span>
-  <span class="s2">"invitation_type"</span><span class="p">:</span> <span class="s2">"kitchen_open_invite"</span><span class="p">,</span>
+  <span class="s2">"invitation_type"</span><span class="p">:</span> <span class="s2">"org_customer"</span><span class="p">,</span>
   <span class="s2">"used_at"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
   <span class="s2">"meta_data"</span><span class="p">:</span> <span class="p">{},</span>
   <span class="s2">"used"</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
@@ -208,7 +242,7 @@ HTTP 404
 </tr>
 <tr>
 <td>invitation_type</td>
-<td>required. Possible values, &ldquo;team&rdquo;, &ldquo;champion&rdquo;, &ldquo;kitchen&rdquo;, &ldquo;kitchen_open_invite&rdquo;, &ldquo;org_open_invite&rdquo;, &ldquo;kitchen_team&rdquo;, &ldquo;kitchen_customer&rdquo;</td>
+<td>required. Possible values: &ldquo;org_team&rdquo;, &ldquo;org_customer&rdquo;.</td>
 </tr>
 <tr>
 <td>meta_data</td>
@@ -228,17 +262,16 @@ HTTP 404
 </tr>
 </tbody></table>
 <h3 id='http-response'>HTTP Response</h3>
-<p>Returns Invitation object or raises an error.</p>
+<p>Returns Invitation object or raises error(s).</p>
 <h2 id='list-invitations'>List invitations</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -H <span class="s2">"RAMEN_CLIENT_ID: 123"</span> <span class="se">\</span>
-  -H <span class="s2">"RAMEN_CLIENT_SECRET: abc"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_API_KEY: 123"</span> <span class="se">\</span>
   https://ramen.is/api/v1/invitations
 
 <span class="o">[</span>
   <span class="o">{</span>
     <span class="s2">"recipient_email"</span>: <span class="s2">"user+1@example.com"</span>,
-    <span class="s2">"invitation_type"</span>: <span class="s2">"kitchen_open_invite"</span>,
+    <span class="s2">"invitation_type"</span>: <span class="s2">"org_team"</span>,
     <span class="s2">"used_at"</span>: null,
     <span class="s2">"meta_data"</span>: <span class="o">{}</span>,
     <span class="s2">"used"</span>: <span class="nb">false</span>,
@@ -247,7 +280,7 @@ HTTP 404
   <span class="o">}</span>,
   <span class="o">{</span>
     <span class="s2">"recipient_email"</span>: <span class="s2">"user+2@gamil.com"</span>,
-    <span class="s2">"invitation_type"</span>: <span class="s2">"kitchen_open_invite"</span>,
+    <span class="s2">"invitation_type"</span>: <span class="s2">"org_customer"</span>,
     <span class="s2">"used_at"</span>: <span class="s2">"2014-11-09T23:59:13-07:00"</span>,
     <span class="s2">"meta_data"</span>: <span class="o">{}</span>,
     <span class="s2">"used"</span>: <span class="nb">true</span>,
@@ -263,7 +296,7 @@ HTTP 404
 <span class="o">[</span><span class="c1">#&lt;Ramen::Invitation:0x3fd621b79314 id=545ea888646d6115461d0000&gt; JSON: {</span>
   <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"545ea888646d6115461d0000"</span><span class="p">,</span>
   <span class="s2">"recipient_email"</span><span class="p">:</span> <span class="s2">"user+1@example.com"</span><span class="p">,</span>
-  <span class="s2">"invitation_type"</span><span class="p">:</span> <span class="s2">"kitchen_open_invite"</span><span class="p">,</span>
+  <span class="s2">"invitation_type"</span><span class="p">:</span> <span class="s2">"org_team"</span><span class="p">,</span>
   <span class="s2">"used_at"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
   <span class="s2">"meta_data"</span><span class="p">:</span> <span class="p">{},</span>
   <span class="s2">"used"</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
@@ -271,7 +304,7 @@ HTTP 404
 <span class="p">},</span> <span class="c1">#&lt;Ramen::Invitation:0x3fd621b80434 id=54606182646d61258a030000&gt; JSON: {</span>
   <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"54606182646d61258a030000"</span><span class="p">,</span>
   <span class="s2">"recipient_email"</span><span class="p">:</span> <span class="s2">"user+2@gmail.com"</span><span class="p">,</span>
-  <span class="s2">"invitation_type"</span><span class="p">:</span> <span class="s2">"kitchen_open_invite"</span><span class="p">,</span>
+  <span class="s2">"invitation_type"</span><span class="p">:</span> <span class="s2">"org_customer"</span><span class="p">,</span>
   <span class="s2">"used_at"</span><span class="p">:</span> <span class="s2">"2014-11-09T23:59:13-07:00"</span><span class="p">,</span>
   <span class="s2">"meta_data"</span><span class="p">:</span> <span class="p">{},</span>
   <span class="s2">"used"</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
@@ -283,16 +316,15 @@ HTTP 404
 <h3 id='arguments'>Arguments</h3>
 <p>None.</p>
 <h3 id='http-response'>HTTP Response</h3>
-<p>Returns list of Invitation objects.</p>
+<p>Returns an array of Invitation objects or error(s).</p>
 <h2 id='retrieve-an-invitation'>Retrieve an invitation</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -H <span class="s2">"RAMEN_CLIENT_ID: 123"</span> <span class="se">\</span>
-  -H <span class="s2">"RAMEN_CLIENT_SECRET: abc"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_API_KEY: 123"</span> <span class="se">\</span>
   https://ramen.is/api/v1/invitations/54606182646d61258a030000
 
 <span class="o">{</span>
   <span class="s2">"recipient_email"</span>: <span class="s2">"user+2@gamil.com"</span>,
-  <span class="s2">"invitation_type"</span>: <span class="s2">"kitchen_open_invite"</span>,
+  <span class="s2">"invitation_type"</span>: <span class="s2">"org_customer"</span>,
   <span class="s2">"used_at"</span>: <span class="s2">"2014-11-09T23:59:13-07:00"</span>,
   <span class="s2">"meta_data"</span>: <span class="o">{}</span>,
   <span class="s2">"used"</span>: <span class="nb">true</span>,
@@ -315,7 +347,7 @@ HTTP 404
 <span class="p">}</span>
 </pre>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET api/v1/invitations/:id</code></p>
+<p><code class="prettyprint">GET /api/v1/invitations/:id</code></p>
 <h3 id='arguments'>Arguments</h3>
 <table><thead>
 <tr>
@@ -329,18 +361,17 @@ HTTP 404
 </tr>
 </tbody></table>
 <h3 id='http-response'>HTTP Response</h3>
-<p>Returns Invitation object or raises error.</p>
+<p>Returns an Invitation object or error(s).</p>
 <h2 id='update-an-invitation'>Update an invitation</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
   -X PUT
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -H <span class="s2">"RAMEN_CLIENT_ID: 123"</span> <span class="se">\</span>
-  -H <span class="s2">"RAMEN_CLIENT_SECRET: abc"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_API_KEY: 123"</span> <span class="se">\</span>
   -d <span class="s1">'{ "meta_data": { "name": "new name" } }'</span>
   https://ramen.is/api/v1/invitations/54606182646d61258a030000
 
 <span class="o">{</span>
   <span class="s2">"recipient_email"</span>: <span class="s2">"user+2@gamil.com"</span>,
-  <span class="s2">"invitation_type"</span>: <span class="s2">"kitchen_open_invite"</span>,
+  <span class="s2">"invitation_type"</span>: <span class="s2">"org_customer"</span>,
   <span class="s2">"used_at"</span>: <span class="s2">"2014-11-09T23:59:13-07:00"</span>,
   <span class="s2">"meta_data"</span>: <span class="o">{</span><span class="s2">"name"</span>: <span class="s2">"new name"</span><span class="o">}</span>,
   <span class="s2">"used"</span>: <span class="nb">true</span>,
@@ -365,16 +396,15 @@ HTTP 404
 <span class="p">}</span>
 </pre>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">PUT api/v1/invitations/:id</code></p>
+<p><code class="prettyprint">PUT /api/v1/invitations/:id</code></p>
 <h3 id='arguments'>Arguments</h3>
 <p>Same arguments as creating an invitation. See <a href="#create-an-invitation">Create an invitation</a></p>
 <h3 id='http-response'>HTTP Response</h3>
-<p>Returns Invitation object or raises error.</p>
+<p>Returns an Invitation object or error(s).</p>
 <h2 id='delete-an-invitation'>Delete an invitation</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
   -X DELETE
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -H <span class="s2">"RAMEN_CLIENT_ID: 123"</span> <span class="se">\</span>
-  -H <span class="s2">"RAMEN_CLIENT_SECRET: abc"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_API_KEY: 123"</span> <span class="se">\</span>
   https://ramen.is/api/v1/invitations/54606182646d61258a030000
 
 <span class="o">{</span>
@@ -382,7 +412,7 @@ HTTP 404
   <span class="s2">"id"</span>: <span class="s2">"54606182646d61258a030000"</span>
 <span class="o">}</span>
 </pre>
-<pre class="highlight ruby"><span class="n">invitation</span> <span class="o">=</span> <span class="no">Ramen</span><span class="o">::</span><span class="no">Invitation</span><span class="p">.</span><span class="nf">retrieve</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="s2">"54606182646d61258a030000"</span><span class="p">)</span>
+<pre class="highlight ruby"><span class="n">invitation</span> <span class="o">=</span> <span class="no">Ramen</span><span class="o">::</span><span class="no">Invitation</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="s2">"54606182646d61258a030000"</span><span class="p">)</span>
 <span class="n">invitation</span><span class="p">.</span><span class="nf">delete</span>
 
 <span class="n">invitation</span><span class="p">.</span><span class="nf">inspect</span>
@@ -393,7 +423,240 @@ HTTP 404
 <span class="p">}</span>
 </pre>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">DELETE api/v1/invitations/:id</code></p>
+<p><code class="prettyprint">DELETE /api/v1/invitations/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns JSON with deleted object&rsquo;s primary ID.</p>
+
+          <h1 id='community-members'>Community Members</h1><h2 id='the-community-member-object'>The community member object</h2><pre class="highlight shell"><span class="o">{</span> 
+  <span class="s2">"id"</span>, 
+  <span class="s2">"object"</span>: <span class="s2">"community_member"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">""</span>, 
+  <span class="s2">"updated_at"</span>: <span class="s2">""</span>, 
+  <span class="s2">"joined_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"type"</span>: <span class="s2">""</span>,
+  <span class="s2">"title"</span>: <span class="s2">""</span>,
+  <span class="s2">"short_bio"</span>: <span class="s2">""</span>,
+  <span class="s2">"last_active_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"segments"</span>: <span class="s2">""</span>,
+
+  // --- ATTRIBUTES TO NOT EXPOSE VIA API
+
+  <span class="s2">"level"</span>: <span class="s2">""</span>,
+  <span class="s2">"value"</span>: <span class="s2">""</span>,
+  <span class="s2">"project_ids"</span>: <span class="s2">""</span>,
+  <span class="s2">"gates"</span>: <span class="s2">""</span>,
+  <span class="s2">"last_app_active_at"</span>: <span class="s2">""</span>
+<span class="o">}</span>
+</pre>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>** TODO. describe attributes. **</p>
+<h2 id='create-a-community-member'>Create a community member</h2>
+<p>Community Members are created when a user accepts an invitation. Therefore,
+to create a community member you&rsquo;ll need to invite them to join you on the
+Ramen platform. Check out <a href="#create-an-invitation">creating invitations.</a></p>
+<h2 id='list-all-community-members'>List all community members</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/community_members</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns an array of Community Member objects or error(s).</p>
+<h2 id='retrieve-a-community-member'>Retrieve a community member</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/community_members/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns Community Member object or error(s).</p>
+<h2 id='update-a-community-member'>Update a community member</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">PUT /api/v1/community_members/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns an updated Community Member object or error(s).</p>
+<h2 id='delete-a-community-member'>Delete a community member</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">DELETE /api/v1/community_members/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns JSON with deleted Community Members&rsquo;s id.</p>
+
+          <h1 id='project'>Project</h1><h2 id='the-project-object'>The project object</h2><pre class="highlight shell">EXAMPLE OBJECT
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">""</span>,
+  <span class="s2">"object"</span>: <span class="s2">"project"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"name"</span>: <span class="s2">""</span>,
+  <span class="s2">"logo_url"</span>: <span class="s2">""</span>,
+  <span class="s2">"site_url"</span>: <span class="s2">""</span>,
+  <span class="s2">"tagline"</span>: <span class="s2">""</span>,
+  <span class="s2">"description"</span>: <span class="s2">""</span>,
+  <span class="s2">"location"</span>: <span class="s2">""</span>,
+  <span class="s2">"tags"</span>: <span class="s2">""</span>,
+  <span class="s2">"tech_tags"</span>: <span class="s2">""</span>,
+  <span class="s2">"slug"</span>: <span class="s2">""</span>,
+  <span class="s2">"og_share_image_url"</span>: <span class="s2">""</span>,
+  <span class="s2">"twitter"</span>: <span class="s2">""</span>,
+  <span class="s2">"facebook"</span>: <span class="s2">""</span>,
+  <span class="s2">"share_message"</span>: <span class="s2">""</span>,
+  <span class="s2">"feature_tags"</span>: <span class="s2">""</span>,
+  <span class="s2">"publicly_visible"</span>: <span class="s2">""</span>,
+
+  // --- ATTRIBUTES TO NOT EXPOSE VIA API
+
+  <span class="s2">"plan"</span>: <span class="s2">""</span>,
+  <span class="s2">"microwave"</span>: <span class="s2">""</span>,
+  <span class="s2">"risks"</span>: <span class="s2">""</span>,
+  <span class="s2">"goal_in_cents"</span>: <span class="s2">""</span>,
+  <span class="s2">"end_date"</span>: <span class="s2">""</span>,
+  <span class="s2">"hero_url"</span>: <span class="s2">""</span>,
+  <span class="s2">"noodle_bar_image_url"</span>: <span class="s2">""</span>,
+  <span class="s2">"marketplace_sort"</span>: <span class="s2">""</span>,
+  <span class="s2">"force_enable_kitchen"</span>: <span class="s2">""</span>,
+  <span class="s2">"noodle_bar"</span>: <span class="s2">""</span>,
+  <span class="s2">"successful"</span>: <span class="s2">""</span>,
+  <span class="s2">"failed"</span>: <span class="s2">""</span>,
+  <span class="s2">"video_url"</span>: <span class="s2">""</span>,
+  <span class="s2">"video_webm_url"</span>: <span class="s2">""</span>,
+  <span class="s2">"discount_percent"</span>: <span class="s2">""</span>,
+  <span class="s2">"discount_amount"</span>: <span class="s2">""</span>,
+  <span class="s2">"open_invite_enabled"</span>: <span class="s2">""</span>,
+  <span class="s2">"kitchen_only"</span>: <span class="s2">""</span>,
+  <span class="s2">"ramen_event_received_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"priority"</span>: <span class="s2">""</span>,
+  <span class="s2">"ask_for_linkedin"</span>: <span class="s2">""</span>
+<span class="o">}</span>
+</pre>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>** TODO. describe attributes. **</p>
+<h2 id='create-a-project'>Create a project</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
+  -X POST <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_API_KEY: 123"</span> <span class="se">\</span>
+  -d <span class="s1">'{ "name": "Ramen API" }'</span> <span class="se">\</span>
+  https://ramen.is/api/v1/projects
+<span class="o">{</span>
+  <span class="s2">"name"</span>: <span class="s2">"Ramen API"</span>,
+  <span class="s2">"id"</span>: <span class="s2">"545ea888646d6115461d0000"</span>,
+  <span class="s2">"object"</span>: <span class="s2">"project"</span>
+<span class="o">}</span>
+</pre>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">POST /api/v1/projects</code></p>
+<h3 id='arguments'>Arguments</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>required.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns Project object or raises an error.</p>
+<h2 id='list-projects'>List projects</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_API_KEY: 123"</span> <span class="se">\</span>
+  https://ramen.is/api/v1/projects
+
+<span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">"name"</span>: <span class="s2">"Ramen API"</span>,
+    <span class="s2">"id"</span>: <span class="s2">"545ea888646d6115461d0000"</span>,
+    <span class="s2">"object"</span>: <span class="s2">"project"</span>
+  <span class="o">}</span>,
+  <span class="o">{</span>
+    <span class="s2">"name"</span>: <span class="s2">"Mobile App"</span>,
+    <span class="s2">"id"</span>: <span class="s2">"54606182646d61258a030000"</span>,
+    <span class="s2">"object"</span>: <span class="s2">"project"</span>
+  <span class="o">}</span>, 
+  <span class="o">{</span>
+    <span class="s2">"name"</span>: <span class="s2">"Ramen"</span>,
+    <span class="s2">"id"</span>: <span class="s2">"54606132646d61258a030000"</span>,
+    <span class="s2">"object"</span>: <span class="s2">"project"</span>
+  <span class="o">}</span>
+<span class="o">]</span>
+</pre>
+<pre class="highlight ruby"></pre>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/projects</code></p>
+<h3 id='arguments'>Arguments</h3>
+<p>None.</p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns list of Project objects.</p>
+<h2 id='retrieve-a-project'>Retrieve a project</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_API_KEY: 123"</span> <span class="se">\</span>
+  https://ramen.is/api/v1/projects/545ea888646d6115461d0000
+
+<span class="o">{</span>
+  <span class="s2">"name"</span>: <span class="s2">"Ramen API"</span>,
+  <span class="s2">"id"</span>: <span class="s2">"545ea888646d6115461d0000"</span>,
+  <span class="s2">"object"</span>: <span class="s2">"project"</span>
+<span class="o">}</span>
+</pre>
+<pre class="highlight ruby"></pre>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/projects/:id</code></p>
+<h3 id='arguments'>Arguments</h3>
+<table><thead>
+<tr>
+<th>Parameters</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>required.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns Project object or raises error.</p>
+<h2 id='update-a-project'>Update a project</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
+  -X PUT
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_API_KEY: 123"</span> <span class="se">\</span>
+  -d <span class="s1">'{ "name": "Ramen API v2"}'</span>
+  https://ramen.is/api/v1/projects/545ea888646d6115461d0000
+
+<span class="o">{</span>
+  <span class="s2">"name"</span>: <span class="s2">"Ramen API v2"</span>,
+  <span class="s2">"id"</span>: <span class="s2">"545ea888646d6115461d0000"</span>,
+  <span class="s2">"object"</span>: <span class="s2">"project"</span>
+<span class="o">}</span>
+</pre>
+<pre class="highlight ruby"></pre>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">PUT /api/v1/projects/:id</code></p>
+<h3 id='arguments'>Arguments</h3>
+<p>Same arguments as creating a project. See <a href="#create-a-project">Create a project</a></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns Project object or raises error.</p>
+<h2 id='delete-a-project'>Delete a project</h2><pre class="highlight shell"><span class="gp">$ </span>curl <span class="se">\</span>
+  -X DELETE
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"RAMEN_API_KEY: 123"</span> <span class="se">\</span>
+  https://ramen.is/api/v1/project/54606182646d61258a030000
+
+<span class="o">{</span>
+  <span class="s2">"deleted"</span>: <span class="s2">"true"</span>,
+  <span class="s2">"id"</span>: <span class="s2">"54606182646d61258a030000"</span>
+<span class="o">}</span>
+</pre>
+<pre class="highlight ruby"></pre>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">DELETE /api/v1/projects/:id</code></p>
 <h3 id='arguments'>Arguments</h3>
 <table><thead>
 <tr>
@@ -408,6 +671,317 @@ HTTP 404
 </tbody></table>
 <h3 id='http-response'>HTTP Response</h3>
 <p>Returns JSON with deleted object&rsquo;s primary ID.</p>
+
+          <h1 id='buckets'>Buckets</h1><h2 id='the-bucket-object'>The bucket object</h2><pre class="highlight shell">EXAMPLE OBJECT
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">""</span>,
+  <span class="s2">"object"</span>: <span class="s2">"bucket"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"project_id"</span>: <span class="s2">""</span>,
+  <span class="s2">"name"</span>: <span class="s2">""</span>,
+  <span class="s2">"completion_date"</span>: <span class="s2">""</span>
+
+  // --- ATTRIBUTES TO NOT EXPOSE VIA API
+
+  none
+<span class="o">}</span>
+</pre>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>** TODO. describe attributes. **</p>
+<h2 id='create-a-bucket'>Create a bucket</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">POST /api/v1/projects/:project_id/buckets</code></p>
+<h3 id='arguments'>Arguments</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>required.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>required.</td>
+</tr>
+<tr>
+<td>completion_date</td>
+<td>optional.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns created Bucket object or error(s).</p>
+<h2 id='list-buckets'>List buckets</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/projects/:project_id/buckets</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns an array of Bucket objects or error(s).</p>
+<h2 id='retrive-a-bucket'>Retrive a bucket</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/projects/:project_id/buckets/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns Bucket object or error(s).</p>
+<h2 id='update-a-bucket'>Update a bucket</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">PUT /api/v1/projects/:project_id/buckets/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns updated Bucket object or error(s).</p>
+<h2 id='delete-a-bucket'>Delete a bucket</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">DELETE /api/v1/projects/:project_id/buckets/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns JSON with deleted buckets&rsquo;s id.</p>
+
+          <h1 id='features'>Features</h1><h2 id='the-feature-object'>The feature object</h2><pre class="highlight shell">EXAMPLE OBJECT
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">""</span>,
+  <span class="s2">"object"</span>: <span class="s2">"feature"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"last_active_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"project_id"</span>: <span class="s2">""</span>,
+  <span class="s2">"phase"</span>: <span class="s2">""</span>,
+  <span class="s2">"bucket_id"</span>: <span class="s2">""</span>,
+  <span class="s2">"community_member_id"</span>: <span class="s2">""</span>,
+  <span class="s2">"name"</span>: <span class="s2">""</span>,
+  <span class="s2">"description"</span>: <span class="s2">""</span>,
+  <span class="s2">"publicly_visible"</span>: <span class="s2">""</span>,
+  <span class="s2">"published_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"notified_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"archived_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"archival_reason"</span>: <span class="s2">""</span>,
+  <span class="s2">"tracking_js_key"</span>: <span class="s2">""</span>,
+  <span class="s2">"tracking_enabled"</span>: <span class="s2">""</span>,
+  <span class="s2">"tracking_url"</span>: <span class="s2">""</span>,
+  <span class="s2">"tracking_regex_enabled"</span>: <span class="s2">""</span>,
+  <span class="s2">"tracking_url_regex"</span>: <span class="s2">""</span>,
+
+  // ---- relationships
+
+  <span class="s2">"updates"</span>:  <span class="o">[]</span>, 
+  <span class="s2">"comments"</span>: <span class="o">[]</span>,
+
+  // --- ATTRIBUTES TO NOT EXPOSE VIA API
+
+  <span class="s2">"original_text"</span>: <span class="s2">""</span>,
+  <span class="s2">"sanitized_text"</span>: <span class="s2">""</span>, 
+  <span class="s2">"stripped_text"</span>: <span class="s2">""</span>, 
+  <span class="s2">"position"</span>: <span class="s2">""</span>,
+  <span class="s2">"tags"</span>: <span class="s2">""</span>,
+  <span class="s2">"attachment_url"</span>: <span class="s2">""</span>,
+  <span class="s2">"from_idea_id"</span>: <span class="s2">""</span>,
+  <span class="s2">"instructions_to_find"</span>: <span class="s2">""</span>,
+  <span class="s2">"used_by_user_ids"</span>: <span class="s2">""</span>,
+  <span class="s2">"source_id"</span>: <span class="s2">""</span>,
+  <span class="s2">"projected_delivery_date"</span>: <span class="s2">""</span>,
+  <span class="s2">"actual_delivery_date"</span>: <span class="s2">""</span>,
+  <span class="s2">"status"</span>: <span class="s2">""</span>
+<span class="o">}</span>
+</pre>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>** TODO. describe attributes. **</p>
+<h2 id='create-a-feature'>Create a feature</h2><pre class="highlight shell"></pre>
+<h3 id='arguments'>Arguments</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>string. required. Must be a project within the organization.</td>
+</tr>
+<tr>
+<td>phase</td>
+<td>string. required. Must be one of: &ldquo;idea&rdquo;, &ldquo;roadmap&rdquo;, &ldquo;being-developed&rdquo;, &ldquo;deployed&rdquo;, &ldquo;validated&rdquo;.</td>
+</tr>
+<tr>
+<td>bucket_id</td>
+<td>string. required. Must be a bucket within the project.</td>
+</tr>
+<tr>
+<td>community_member_id</td>
+<td>string. required. Must be a community_member_id within Ramen organization.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string. required.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string. required. Can be plain text or valid HTML.</td>
+</tr>
+<tr>
+<td>publicly_visible</td>
+<td>boolean, true or false. optional. Default true.</td>
+</tr>
+<tr>
+<td>tracking_enabled</td>
+<td>boolean, true or false. optional. Default false.</td>
+</tr>
+<tr>
+<td>tracking_url</td>
+<td>string. optional. URI to track feature on your site.</td>
+</tr>
+<tr>
+<td>tracking_regex_enabled</td>
+<td>boolean, true or false. optional. Default false.</td>
+</tr>
+<tr>
+<td>tracking_url_regex</td>
+<td>string. optional.</td>
+</tr>
+</tbody></table>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">POST /api/v1/projects/:project_id/features</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns Feature object or error(s).</p>
+<h2 id='list-features'>List features</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/projects/:project_id/features</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns an array of Feature objects or error(s).</p>
+<h2 id='retrieve-a-feature'>Retrieve a feature</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/projects/:project_id/features/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns Feature object or error(s).</p>
+<h2 id='update-a-feature'>Update a feature</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">PUT /api/v1/projects/:project_id/features/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns an updated Feature object or error(s).</p>
+<h2 id='delete-a-feature'>Delete a feature</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">DELETE /api/v1/projects/:project_id/features/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns JSON with deleted object&rsquo;s primary ID.</p>
+<h2 id='list-feature-comments'>List feature comments</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/projects/:project_id/features/:id/comments</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns an array of <a href="#comments">Comment objects</a> or error(s).</p>
+<h2 id='list-feature-updates'>List feature updates</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/projects/:project_id/features/:id/updates</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns an array of <a href="#updates">Update objects</a> or error(s).</p>
+
+          <h1 id='comments'>Comments</h1><h2 id='the-comment-object'>The comment object</h2><pre class="highlight shell">EXAMPLE OBJECT 
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">""</span>, 
+  <span class="s2">"object"</span>: <span class="s2">"comment"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">""</span>, 
+  <span class="s2">"updated_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"project_id"</span>: <span class="s2">""</span>, 
+  <span class="s2">"feature_id"</span>: <span class="s2">""</span>, 
+  <span class="s2">"original_text"</span>: <span class="s2">""</span>,
+  <span class="s2">"display_text"</span>, <span class="s2">""</span>,
+  <span class="s2">"publicly_visible"</span>: <span class="s2">""</span>,
+  <span class="s2">"community_member_id"</span>: <span class="s2">""</span>, 
+
+  // --- ATTRIBUTES TO NOT EXPOSE VIA API
+
+  <span class="s2">"comment_thread_id"</span>: <span class="s2">""</span>,
+  <span class="s2">"link_target_id"</span>: <span class="s2">""</span>,
+  <span class="s2">"link_target_type"</span>: <span class="s2">""</span>
+<span class="o">}</span>
+
+Attribute | Description 
+----------|------------
+<span class="k">**</span> TODO. describe attributes. <span class="k">**</span>
+
+</pre>
+<h2 id='retrieve-a-comment'>Retrieve a comment</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/comments/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns Comment object or error(s).</p>
+
+          <h1 id='updates'>Updates</h1><h2 id='the-update-object'>The update object</h2><pre class="highlight shell">EXAMPLE OBJECT
+
+<span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">""</span>, 
+  <span class="s2">"object"</span>: <span class="s2">"update"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">""</span>, 
+  <span class="s2">"updated_at"</span>: <span class="s2">""</span>,
+  <span class="s2">"project_id"</span>: <span class="s2">""</span>, 
+  <span class="s2">"feature_id"</span>: <span class="s2">""</span>, 
+  <span class="s2">"title"</span>: <span class="s2">""</span>, 
+  <span class="s2">"description"</span>: <span class="s2">""</span>,
+  <span class="s2">"publicly_visible"</span>: <span class="s2">""</span>
+  <span class="s2">"notified_at"</span>: <span class="s2">""</span>
+
+  // --- ATTRIBUTES TO NOT EXPOSE VIA API
+
+  none
+<span class="o">}</span>
+</pre>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>** TODO. describe attributes. **</p>
+<h2 id='create-an-update'>Create an update</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">POST /api/v1/projects/:project_id/updates</code></p>
+<h3 id='arguments'>Arguments</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>required.</td>
+</tr>
+<tr>
+<td>feature_id</td>
+<td>optional.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>required.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>required.</td>
+</tr>
+</tbody></table>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns created update object or error(s).</p>
+<h2 id='list-all-updates'>List all updates</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/projects/:project_id/updates</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns array of update objects or error(s).</p>
+<h2 id='retrieve-an-update'>Retrieve an update</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /api/v1/projects/:project_id/updates/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns update object or error(s).</p>
+<h2 id='update-an-update'>Update an update</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">PUT /api/v1/projects/:project_id/updates/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns updated update object or error(s).</p>
+<h2 id='delete-an-update'>Delete an update</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">DELETE /api/v1/projects/:project_id/updates/:id</code></p>
+<h3 id='http-response'>HTTP Response</h3>
+<p>Returns JSON with deleted update&rsquo;s id.</p>
 
       </div>
       <div class="dark-box">
