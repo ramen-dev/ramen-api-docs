@@ -30,9 +30,7 @@ certain paid plans.
 ```
 
 We provide a way for you to customize links that
-appear at the bottom of Product Center:
-
-![Showing where custom links appear in RamenJS](<%= asset_url('docs/custom_links.png') %>)
+appear at the bottom of Product Center.
 
 Custom Links have a `title` property and either an
 `href` or a `callback` property. `href`s

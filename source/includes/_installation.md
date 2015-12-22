@@ -25,8 +25,6 @@ navigate to a page where Segment's `analytics.js` is installed.
 After refreshing the page a few times, refresh this page and you
 should see that RamenJS is receiving data.
 
-![Show done](<%= asset_url 'segment-ramen-done.png' %>)
-
 ### Enable Secure Mode **<small>(Optional)</small>**
 
 Once you've verified Ramen is enabled, you may want to enable Secure Mode.
