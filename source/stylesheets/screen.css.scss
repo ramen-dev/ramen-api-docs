@@ -625,3 +625,35 @@ html, body {
     margin-top: $main-padding;
   }
 }
+
+pre.highlight {
+  position: relative;
+}
+
+pre.highlight::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  color: white;
+  background-color: #2467AF;
+  padding: 0px 4px;
+  border-radius: 0 0 5px 0;
+  font-size: 12px;
+}
+
+pre.highlight.ruby::before {
+  content: 'Ruby'
+}
+
+pre.highlight.html::before {
+  content: 'HTML'
+}
+
+pre.highlight.javascript::before {
+  content: 'JS'
+}
+
+pre.highlight.python::before {
+  content: 'Python'
+}

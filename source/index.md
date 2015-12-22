@@ -1,42 +1,33 @@
 ---
-title: Ramen API Reference
-
-language_tabs:
-  - shell
-  - ruby
+title: Ramen Developer Documentation
 
 includes:
-  - authentication
-  - organization
-  - invitations
-  - community_members
-  - projects
-  - buckets
-  - features
-  - comments
-  - updates
-  #- labels
-  #- segments
+  - questions
+  - installation
+  - concepts
+  - customers
+  - companies
+  - traits
+  - customization
+  - product_center
+  - examples
+  - reference
+  - credits
 
 search: true
 ---
 
 # Introduction
-Welcome to the Ramen API.
+Welcome to the Ramen Developer Documentation.
 
 <aside class="warning">
-__We're in the process of building out the API. These docs serve as the medium to
-discuss the technical API implementation before coding it up.__
+__These docs are a work in progress. Please email [support](mailto:support@ramen.is) or
+find us on [Twitter](https://twitter.com/ramenapp) if you have any questions__
 </aside>
-
-We're using our own product (Ramen!) to plan out the API's features and functionality. 
-We'd love to get your input so we can build a powerful yet simple API. 
-Join us here, [the Ramen API Project](https://align.ramen.is/projects/api/kitchen).
 
 <!-- see ramen-api-docs/source/includes/*.md for content -->
 
 <script>
-  (window.ramenq = window.ramenq || [])
-    .push(['set_kitchen_id', "54642ab277656221684c0000"]);
+window.ramenSettings = { organization_id: '54483c6372612e2cea040000', user: {cross_domain: true} };
 </script>
-<script src="https://cdn.ramen.is/assets/ramen.js" async></script>
+<script src="http://cdn.ramen.dev/assets/ramen.js" async></script>
