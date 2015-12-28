@@ -23,7 +23,7 @@ RamenJS:
 * Angular
 * Meteor.js
 * Wordpress
-* Joombla
+* Joomla
 * Drupal
 * PHP
 

@@ -101,16 +101,16 @@ After refreshing the page a few times, refresh this page and you
 should see that RamenJS is receiving data.
 
 
-## Joombla
+## Joomla
 
-Thanks to our integration with Eager, installing RamenJS on Joombla is a breeze.
+Thanks to our integration with Eager, installing RamenJS on Joomla is a breeze.
 
 ### Installation methods
 
 Click the 'Install via Eager' button on the _Getting Started_ page of your
 Ramen Organization.
 
-When you are prompted, download and install the Joombla plugin from Eager.
+When you are prompted, download and install the Joomla plugin from Eager.
 
 Wait a couple minutes, and then head over to your application and
 navigate to a page where Eager is loaded.
