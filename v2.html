@@ -135,27 +135,26 @@ Ramen Organization.</p>
 
 <p>Wait a couple minutes, and then head over to your application and
 navigate to a page where Segment&rsquo;s <code class="prettyprint">analytics.js</code> is installed.
-After refreshing the page a few times, refresh this page and you
-should see that RamenJS is receiving data.</p>
+After refreshing the page a few times, refresh your <em>Getting Started</em> page and you
+should see that RamenJS is sending data to Ramen.</p>
 
 <p>You can read more about the Ramen/Segment integration on by
-<a href="https://segment.com/docs/integrations/ramen/#secure-mode">clicking here</a>.</p>
+<a href="https://segment.com/docs/integrations/ramen/">clicking here</a>.</p>
 <h3 id='learn-more-about-segment-com'>Learn More About Segment.com</h3>
 <p>To learn more about Segment, <a href="https://segment.com/?utm_source=partners&amp;utm_medium=docs&amp;utm_campaign=ramen.is">click here</a></p>
 <h2 id='eager-io'>Eager.io</h2>
 <p><a href="https://eager.io/app/ramen?utm_source=partners&amp;utm_medium=docs&amp;utm_campaign=ramen.is">Eager.io</a>
 lets you install JavaScript libraries at the touch
 of a button. If you are already using Eager, you can install Ramen in just a few clicks without needing
-to write any code or deploy any changes to your application.
-If not, we <em>strongly recommend</em> looking into it, because it is awesome.</p>
+to write any code or deploy any changes to your application.</p>
 <h3 id='installation-methods'>Installation methods</h3>
 <p>Click the &lsquo;Install via Eager&rsquo; button on the <em>Getting Started</em> page of your
 Ramen Organization.</p>
 
 <p>Wait a couple minutes, and then head over to your application and
 navigate to a page where Eager is loaded.
-After refreshing the page a few times, refresh this page and you
-should see that RamenJS is receiving data.</p>
+After refreshing the page a few times, refresh your <em>Getting Started</em> page and you
+should see that RamenJS is sending data to Ramen.</p>
 <h3 id='learn-more-about-eager-io'>Learn More About Eager.io</h3>
 <p>To learn more about Eager, <a href="https://eager.io/?utm_source=partners&amp;utm_medium=docs&amp;utm_campaign=ramen.is">click here</a></p>
 <h2 id='ruby-on-rails-rubygem'>Ruby on Rails Rubygem</h2>
@@ -172,8 +171,8 @@ Ramen Organization.</p>
 
 <p>Wait a couple minutes, and then head over to your application and
 navigate to a page where Eager is loaded.
-After refreshing the page a few times, refresh this page and you
-should see that RamenJS is receiving data.</p>
+After refreshing the page a few times, refresh your <em>Getting Started</em> page and you
+should see that RamenJS is sending data to Ramen.</p>
 <h2 id='drupal'>Drupal</h2>
 <p>Thanks to our integration with Eager, installing RamenJS on Drupal is a breeze.</p>
 <h3 id='installation-methods'>Installation methods</h3>
@@ -184,8 +183,8 @@ Ramen Organization.</p>
 
 <p>Wait a couple minutes, and then head over to your application and
 navigate to a page where Eager is loaded.
-After refreshing the page a few times, refresh this page and you
-should see that RamenJS is receiving data.</p>
+After refreshing the page a few times, refresh your <em>Getting Started</em> page and you
+should see that RamenJS is sending data to Ramen.</p>
 <h2 id='joomla'>Joomla</h2>
 <p>Thanks to our integration with Eager, installing RamenJS on Joomla is a breeze.</p>
 <h3 id='installation-methods'>Installation methods</h3>
@@ -196,11 +195,11 @@ Ramen Organization.</p>
 
 <p>Wait a couple minutes, and then head over to your application and
 navigate to a page where Eager is loaded.
-After refreshing the page a few times, refresh this page and you
-should see that RamenJS is receiving data.</p>
+After refreshing the page a few times, refresh your <em>Getting Started</em> page and you
+should see that RamenJS is sending data to Ramen.</p>
 <h2 id='angular'>Angular</h2>
 <p>While there is no official library for Angular, we do have an
-<a href="https://github.com/ramen-dev/angular-seed">Example App</a></p>
+<a href="https://github.com/ramen-dev/angular-seed/tree/ramenjs-v2.0">Example App</a></p>
 
 <p>Pay close attention to the comments on the commits to see what
 is going on: <a href="https://github.com/ramen-dev/angular-seed/commits/master">Commits</a></p>
@@ -248,7 +247,7 @@ result in the function being executed immediately.</p>
 will ask any questions.</p>
 
 <p>There are three ways to call <code class="prettyprint">_ramen.identify()</code></p>
-<h3 id='anonymous-visitor'>Anonymous Visitor</h3><pre class="highlight javascript"><span class="nx">_ramen</span><span class="p">.</span><span class="nx">identify</span><span class="p">();</span>
+<h3 id='1--anonymous-visitor'>1. Anonymous Visitor</h3><pre class="highlight javascript"><span class="nx">_ramen</span><span class="p">.</span><span class="nx">identify</span><span class="p">();</span>
 </pre>
 
 <p>This will identify an anonymous visitor. The visitor will be tagged as such
@@ -256,7 +255,7 @@ in Ramen, and you will be able to target questions to anonymous visitors.</p>
 
 <p>You can still identify Anonymous visitors even if you have <a href="#secure-mode">Secure Mode</a>
 enabled.</p>
-<h3 id='logged-in-user'>Logged-in User</h3><pre class="highlight javascript"><span class="nx">_ramen</span><span class="p">.</span><span class="nx">identify</span><span class="p">({</span>
+<h3 id='2--logged-in-user'>2. Logged-in User</h3><pre class="highlight javascript"><span class="nx">_ramen</span><span class="p">.</span><span class="nx">identify</span><span class="p">({</span>
   <span class="na">id</span><span class="p">:</span> <span class="s2">"12345"</span><span class="p">,</span> <span class="c1">// Required
 </span>  <span class="na">email</span><span class="p">:</span> <span class="s2">"customer@yoursite.com"</span><span class="p">,</span> <span class="c1">// Optional
 </span>  <span class="na">name</span><span class="p">:</span> <span class="s2">"Bugs Bunny"</span> <span class="c1">// Optional
@@ -264,7 +263,7 @@ enabled.</p>
 </pre>
 
 <p>This will identify a logged-in user. The user will be recorded in Ramen.</p>
-<h3 id='logged-in-user-w-secure-mode'>Logged-in User w/ Secure Mode</h3><pre class="highlight javascript"><span class="nx">_ramen</span><span class="p">.</span><span class="nx">identify</span><span class="p">({</span>
+<h3 id='3--logged-in-user-w-secure-mode'>3. Logged-in User w/ Secure Mode</h3><pre class="highlight javascript"><span class="nx">_ramen</span><span class="p">.</span><span class="nx">identify</span><span class="p">({</span>
   <span class="na">id</span><span class="p">:</span> <span class="s2">"12345"</span><span class="p">,</span>                    <span class="c1">// Required
 </span>  <span class="na">email</span><span class="p">:</span> <span class="s2">"customer@yoursite.com"</span><span class="p">,</span> <span class="c1">// Optional
 </span>  <span class="na">name</span><span class="p">:</span> <span class="s2">"Bugs Bunny"</span><span class="p">,</span>             <span class="c1">// Optional
@@ -275,8 +274,7 @@ enabled.</p>
 </span><span class="p">});</span>
 </pre>
 
-<p>This will identify a logged-in user in Secure Mode.
-The user will be recorded in Ramen.</p>
+<p>This will identify a logged-in user in Secure Mode. The user will be recorded in Ramen.</p>
 
 <p>See <a href="#secure-mode">Secure Mode</a> for more information.</p>
 <h2 id='code-classprettyprint_ramen-groupcode'><code class="prettyprint">_ramen.group()</code></h2><pre class="highlight javascript"><span class="nx">_ramen</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
@@ -300,15 +298,12 @@ been customers for under 1 day with more than 100 Logged-in pageviews.</p>
 
 <p>You cannot pass any other options to <code class="prettyprint">_ramen.track()</code>.</p>
 <h2 id='code-classprettyprint_ramen-askcode'><code class="prettyprint">_ramen.ask()</code></h2><pre class="highlight javascript"><span class="nx">_ramen</span><span class="p">.</span><span class="nx">ask</span><span class="p">(</span><span class="s2">"QUESTION_ID"</span><span class="p">);</span>
+</pre>
 
-<span class="nx">This</span> <span class="nx">will</span> <span class="nx">trigger</span> <span class="nx">a</span> <span class="nx">question</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">asked</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">currently</span>
-<span class="err">`</span><span class="nx">identify</span><span class="err">`'</span><span class="nx">d</span> <span class="nx">user</span><span class="p">,</span> <span class="nx">but</span> <span class="nx">ONLY</span> <span class="k">if</span> <span class="nx">they</span> <span class="nx">have</span> <span class="nx">not</span> <span class="nx">already</span> <span class="nx">been</span> <span class="nx">asked</span>
-<span class="nx">that</span> <span class="nx">question</span><span class="p">.</span>
-
-<span class="err">###</span> <span class="nx">Force</span> <span class="nx">ask</span>
-
-<span class="err">```</span><span class="nx">javascript</span>
-<span class="nx">_ramen</span><span class="p">.</span><span class="nx">ask</span><span class="p">(</span><span class="s2">"QUESTION_ID"</span><span class="p">,</span> <span class="p">{</span><span class="na">force</span><span class="p">:</span> <span class="kc">true</span><span class="p">});</span>
+<p>This will trigger a question to be asked of the currently
+<code class="prettyprint">identify</code>&rsquo;d user, but ONLY if they have not already been asked
+that question.</p>
+<h3 id='force-ask'>Force ask</h3><pre class="highlight javascript"><span class="nx">_ramen</span><span class="p">.</span><span class="nx">ask</span><span class="p">(</span><span class="s2">"QUESTION_ID"</span><span class="p">,</span> <span class="p">{</span><span class="na">force</span><span class="p">:</span> <span class="kc">true</span><span class="p">});</span>
 </pre>
 
 <p>This will force a question to be asked regardless of whether or
@@ -321,11 +316,12 @@ question. This can be handy for certain workflow questions
 <p>This records a pageview. You cannot pass it any arguments. It will
 look at the current value of <code class="prettyprint">window.location</code>, pass that value to
 Ramen, and check to see if the user is eligible to be asked a question.</p>
-<h2 id='_ramen-reset'>`_ramen.reset()</h2><pre class="highlight javascript"><span class="nx">_ramen</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+<h2 id='code-classprettyprint_ramen-resetcode'><code class="prettyprint">_ramen.reset()</code></h2><pre class="highlight javascript"><span class="nx">_ramen</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
 </pre>
 
 <p>This will clear the current user. Useful to use when a user logs out
-of your application.</p>
+of your application. Otherwise, they may keep getting asked questions
+even after they&rsquo;re logged out.</p>
 
           <h1 id='custom-traits'>Custom Traits</h1><pre class="highlight javascript"><span class="nx">_ramen</span><span class="p">.</span><span class="nx">identify</span><span class="p">({</span>
   <span class="na">id</span><span class="p">:</span> <span class="s2">"42"</span><span class="p">,</span>
