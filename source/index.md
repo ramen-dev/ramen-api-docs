@@ -17,13 +17,9 @@ includes:
 search: true
 ---
 
+
 # Introduction
 Welcome to the Ramen Developer Documentation.
-
-<aside class="warning">
-__These docs are a work in progress. Please email [support](mailto:support@ramen.is) or
-find us on [Twitter](https://twitter.com/ramenapp) if you have any questions__
-</aside>
 
 <!-- see ramen-api-docs/source/includes/*.md for content -->
 
