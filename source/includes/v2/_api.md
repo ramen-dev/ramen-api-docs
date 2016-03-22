@@ -52,7 +52,7 @@ will ask any questions.
 
 There are three ways to call `_ramen.identify()`
 
-### Anonymous Visitor
+### 1. Anonymous Visitor
 
 ```javascript
 _ramen.identify();
@@ -64,7 +64,7 @@ in Ramen, and you will be able to target questions to anonymous visitors.
 You can still identify Anonymous visitors even if you have [Secure Mode](#secure-mode)
 enabled.
 
-### Logged-in User 
+### 2. Logged-in User 
 
 ```javascript
 _ramen.identify({
@@ -77,7 +77,7 @@ _ramen.identify({
 This will identify a logged-in user. The user will be recorded in Ramen.
 
  
-### Logged-in User w/ Secure Mode
+### 3. Logged-in User w/ Secure Mode
 
 ```javascript
 _ramen.identify({
@@ -91,8 +91,7 @@ _ramen.identify({
 });
 ```
 
-This will identify a logged-in user in Secure Mode.
-The user will be recorded in Ramen.
+This will identify a logged-in user in Secure Mode. The user will be recorded in Ramen.
 
 See [Secure Mode](#secure-mode) for more information.
  
@@ -133,6 +132,7 @@ You cannot pass any other options to `_ramen.track()`.
 
 ```javascript
 _ramen.ask("QUESTION_ID");
+```
 
 This will trigger a question to be asked of the currently
 `identify`'d user, but ONLY if they have not already been asked
@@ -162,11 +162,12 @@ look at the current value of `window.location`, pass that value to
 Ramen, and check to see if the user is eligible to be asked a question.
 
 
-## `_ramen.reset()
+## `_ramen.reset()`
 
 ```javascript
 _ramen.reset();
 ```
 
 This will clear the current user. Useful to use when a user logs out
-of your application.
+of your application. Otherwise, they may keep getting asked questions
+even after they're logged out.

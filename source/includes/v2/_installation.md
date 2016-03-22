@@ -68,11 +68,11 @@ Ramen Organization.
 
 Wait a couple minutes, and then head over to your application and
 navigate to a page where Segment's `analytics.js` is installed.
-After refreshing the page a few times, refresh this page and you
-should see that RamenJS is receiving data.
+After refreshing the page a few times, refresh your _Getting Started_ page and you
+should see that RamenJS is sending data to Ramen.
 
 You can read more about the Ramen/Segment integration on by
-[clicking here](https://segment.com/docs/integrations/ramen/#secure-mode).
+[clicking here](https://segment.com/docs/integrations/ramen/).
 
 ### Learn More About Segment.com
 
@@ -85,7 +85,6 @@ To learn more about Segment, [click here](https://segment.com/?utm_source=partne
 lets you install JavaScript libraries at the touch
 of a button. If you are already using Eager, you can install Ramen in just a few clicks without needing
 to write any code or deploy any changes to your application.
-If not, we *strongly recommend* looking into it, because it is awesome.
 
 ### Installation methods
 
@@ -94,8 +93,8 @@ Ramen Organization.
 
 Wait a couple minutes, and then head over to your application and
 navigate to a page where Eager is loaded.
-After refreshing the page a few times, refresh this page and you
-should see that RamenJS is receiving data.
+After refreshing the page a few times, refresh your _Getting Started_ page and you
+should see that RamenJS is sending data to Ramen.
 
 ### Learn More About Eager.io
 
@@ -120,8 +119,8 @@ When you are prompted, download and install the Wordpress plugin from Eager.
 
 Wait a couple minutes, and then head over to your application and
 navigate to a page where Eager is loaded.
-After refreshing the page a few times, refresh this page and you
-should see that RamenJS is receiving data.
+After refreshing the page a few times, refresh your _Getting Started_ page and you
+should see that RamenJS is sending data to Ramen.
 
 ## Drupal
 
@@ -136,8 +135,9 @@ When you are prompted, download and install the Drupal plugin from Eager.
 
 Wait a couple minutes, and then head over to your application and
 navigate to a page where Eager is loaded.
-After refreshing the page a few times, refresh this page and you
-should see that RamenJS is receiving data.
+After refreshing the page a few times, refresh your _Getting Started_ page and you
+should see that RamenJS is sending data to Ramen.
+
 
 
 ## Joomla
@@ -153,14 +153,15 @@ When you are prompted, download and install the Joomla plugin from Eager.
 
 Wait a couple minutes, and then head over to your application and
 navigate to a page where Eager is loaded.
-After refreshing the page a few times, refresh this page and you
-should see that RamenJS is receiving data.
+After refreshing the page a few times, refresh your _Getting Started_ page and you
+should see that RamenJS is sending data to Ramen.
+
 
 
 ## Angular
 
 While there is no official library for Angular, we do have an
-[Example App](https://github.com/ramen-dev/angular-seed)
+[Example App](https://github.com/ramen-dev/angular-seed/tree/ramenjs-v2.0)
 
 Pay close attention to the comments on the commits to see what
 is going on: [Commits](https://github.com/ramen-dev/angular-seed/commits/master)

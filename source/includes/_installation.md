@@ -121,7 +121,7 @@ should see that RamenJS is receiving data.
 ## Angular
 
 While there is no official library for Angular, we do have an
-[Example App](https://github.com/ramen-dev/angular-seed)
+[Example App](https://github.com/ramen-dev/angular-seed/tree/ramenjs-v1.0)
 
 Pay close attention to the comments on the commits to see what
 is going on: [Commits](https://github.com/ramen-dev/angular-seed/commits/master)
