@@ -2,28 +2,26 @@
 title: Ramen Developer Documentation
 
 includes:
-  - questions
-  - installation
-  - concepts
-  - customers
-  - companies
-  - traits
-  - customization
-  - product_center
-  - examples
-  - reference
-  - credits
+  - v2/getting_started
+  - v2/installation
+  - v2/api
+  - v2/traits
+  - v2/customization
+  - v2/product_center
+  - v2/secure_mode
+  - v2/credits
 
 search: true
 ---
 
+# RamenJS v2.0 API Documentation
 
-# Introduction
 Welcome to the Ramen Developer Documentation.
 
-<!-- see ramen-api-docs/source/includes/*.md for content -->
+v2.0 of the RamenJS API introduces one big addition: support for
+*Anonymous users*.
 
-<script>
-window.ramenSettings = { organization_id: '54483c6372612e2cea040000', user: {cross_domain: true} };
-</script>
-<script src="http://cdn.ramen.dev/assets/ramen.js" async></script>
+We will be phasing out support for RamenJS v1.0 by October 1st, 2016.
+Please migrate to v2.0 by then.
+
+<!-- see ramen-api-docs/source/includes/*.md for content -->
