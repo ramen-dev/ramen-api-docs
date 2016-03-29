@@ -1,0 +1,937 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Ramen Developer Documentation</title>
+
+    <link rel="shortcut icon" href="/images/favicon.png" />
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+
+    <style type="text/css">
+      /* Ramen customizations */
+      .tocify-wrapper > img {
+        width: 85%;
+        padding: 18px;
+      }
+    </style>
+  </head>
+
+  <body class="v1">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo-teal.png" />
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the Ramen Developer Documentation.</p>
+
+<p><aside class="warning">
+<strong>This is the documenation for the old V1.0 RamenJS API. For our newest API,
+which has support for anonymous visitors, <a href="/">click here</a>.</strong>
+</aside></p>
+
+<!-- see ramen-api-docs/source/includes/*.md for content -->
+
+<script>
+window.ramenSettings = { organization_id: '54483c6372612e2cea040000', user: {cross_domain: true} };
+</script>
+
+<script src="http://cdn.ramen.dev/assets/ramen.js" async></script>
+
+          <h1 id='faq'>FAQ</h1><h2 id='how-do-i-install-ramenjs'>How do I install RamenJS?</h2>
+<p>There are several ways to install RamenJS into your
+application:</p>
+
+<ul>
+<li>Segment.com</li>
+<li>Eager.io</li>
+<li>Our Ruby on Rails gem</li>
+<li>Manually</li>
+</ul>
+<h2 id='what-platforms-do-you-support'>What platforms do you support?</h2>
+<p>RamenJS can be installed into <em>any</em> web application,
+although using it with a Flash application would be tough :)</p>
+
+<p>Here are some of the platforms we&rsquo;ve seen install
+RamenJS:</p>
+
+<ul>
+<li>Ruby on Rails</li>
+<li>Django</li>
+<li>Angular</li>
+<li>Meteor.js</li>
+<li>Wordpress</li>
+<li>Joomla</li>
+<li>Drupal</li>
+<li>PHP</li>
+</ul>
+<h2 id='does-ramenjs-work-on-quotsingle-page-appsquot'>Does RamenJS work on &ldquo;Single Page Apps&rdquo;?</h2>
+<p>Yes it does. See our <a href="#examples">Examples</a> section.</p>
+
+          <h1 id='installation'>Installation</h1><h2 id='segment-com'>Segment.com</h2>
+<p><a href="https://segment.com/?utm_source=partners&amp;utm_medium=docs&amp;utm_campaign=ramen.is">Segment.com</a>
+is a &ldquo;customer data hub&rdquo;. If you already are
+a Segment customer, you can install Ramen in just
+a few clicks without needing
+to write any code or deploy any changes to your application.</p>
+
+<p>RamenJS supports the following Segment methods:</p>
+
+<ul>
+<li><code class="prettyprint">identify</code></li>
+<li><code class="prettyprint">group</code></li>
+<li><code class="prettyprint">track</code> </li>
+<li><code class="prettyprint">page</code></li>
+</ul>
+<h3 id='installation-methods'>Installation methods</h3>
+<p>Click the &lsquo;Install via Segment&rsquo; button on the <em>Getting Started</em> page of your
+Ramen Organization.</p>
+
+<p>Wait a couple minutes, and then head over to your application and
+navigate to a page where Segment&rsquo;s <code class="prettyprint">analytics.js</code> is installed.
+After refreshing the page a few times, refresh this page and you
+should see that RamenJS is receiving data.</p>
+<h3 id='enable-secure-mode-strongsmalloptionalsmallstrong'>Enable Secure Mode <strong><small>(Optional)</small></strong></h3>
+<p>Once you&rsquo;ve verified Ramen is enabled, you may want to enable Secure Mode.</p>
+
+<p><strong>Secure Mode</strong> ensures that nobody can pretend to be your customers. Enabling
+<strong>Secure Mode</strong> requires some changes that a developer will have to make in your
+Segment.com <code class="prettyprint">analytics.js</code> code.</p>
+
+<p><a href="https://segment.com/docs/integrations/ramen/#secure-mode">Click here to view the Segment.com / Ramen Secure Mode Documentation</a></p>
+<h3 id='learn-more-about-segment-com'>Learn More About Segment.com</h3>
+<p>To learn more about Segment, <a href="https://segment.com/?utm_source=partners&amp;utm_medium=docs&amp;utm_campaign=ramen.is">click here</a></p>
+<h2 id='eager-io'>Eager.io</h2>
+<p><a href="https://eager.io/app/ramen?utm_source=partners&amp;utm_medium=docs&amp;utm_campaign=ramen.is">Eager.io</a>
+lets you install JavaScript libraries at the touch
+of a button. If you are already using Eager, you can install Ramen in just a few clicks without needing
+to write any code or deploy any changes to your application.
+If not, we <em>strongly recommend</em> looking into it, because it is awesome.</p>
+<h3 id='installation-methods'>Installation methods</h3>
+<p>Click the &lsquo;Install via Eager&rsquo; button on the <em>Getting Started</em> page of your
+Ramen Organization.</p>
+
+<p>Wait a couple minutes, and then head over to your application and
+navigate to a page where Eager is loaded.
+After refreshing the page a few times, refresh this page and you
+should see that RamenJS is receiving data.</p>
+<h3 id='learn-more-about-eager-io'>Learn More About Eager.io</h3>
+<p>To learn more about Eager, <a href="https://eager.io/?utm_source=partners&amp;utm_medium=docs&amp;utm_campaign=ramen.is">click here</a></p>
+<h2 id='ruby-on-rails-rubygem'>Ruby on Rails Rubygem</h2>
+<p>Ramen maintains an official Rubygem for Ruby on Rails applications. The Rubygem is used on Ramen.is itself.</p>
+
+<p><a href="https://rubygems.org/gems/ramen-rails">View the Rubygem</a></p>
+<h2 id='wordpress'>Wordpress</h2>
+<p>Thanks to our integration with Eager, installing RamenJS on Wordpress is a breeze.</p>
+<h3 id='installation-methods'>Installation methods</h3>
+<p>Click the &lsquo;Install via Eager&rsquo; button on the <em>Getting Started</em> page of your
+Ramen Organization.</p>
+
+<p>When you are prompted, download and install the Wordpress plugin from Eager.</p>
+
+<p>Wait a couple minutes, and then head over to your application and
+navigate to a page where Eager is loaded.
+After refreshing the page a few times, refresh this page and you
+should see that RamenJS is receiving data.</p>
+<h2 id='drupal'>Drupal</h2>
+<p>Thanks to our integration with Eager, installing RamenJS on Drupal is a breeze.</p>
+<h3 id='installation-methods'>Installation methods</h3>
+<p>Click the &lsquo;Install via Eager&rsquo; button on the <em>Getting Started</em> page of your
+Ramen Organization.</p>
+
+<p>When you are prompted, download and install the Drupal plugin from Eager.</p>
+
+<p>Wait a couple minutes, and then head over to your application and
+navigate to a page where Eager is loaded.
+After refreshing the page a few times, refresh this page and you
+should see that RamenJS is receiving data.</p>
+<h2 id='joomla'>Joomla</h2>
+<p>Thanks to our integration with Eager, installing RamenJS on Joomla is a breeze.</p>
+<h3 id='installation-methods'>Installation methods</h3>
+<p>Click the &lsquo;Install via Eager&rsquo; button on the <em>Getting Started</em> page of your
+Ramen Organization.</p>
+
+<p>When you are prompted, download and install the Joomla plugin from Eager.</p>
+
+<p>Wait a couple minutes, and then head over to your application and
+navigate to a page where Eager is loaded.
+After refreshing the page a few times, refresh this page and you
+should see that RamenJS is receiving data.</p>
+<h2 id='angular'>Angular</h2>
+<p>While there is no official library for Angular, we do have an
+<a href="https://github.com/ramen-dev/angular-seed/tree/ramenjs-v1.0">Example App</a></p>
+
+<p>Pay close attention to the comments on the commits to see what
+is going on: <a href="https://github.com/ramen-dev/angular-seed/commits/master">Commits</a></p>
+
+          <h1 id='concepts'>Concepts</h1><h2 id='boostrapping'>Boostrapping</h2>
+<p>Getting RamenJS installed into your application requires
+two bits of code.</p>
+<pre class="highlight html"><span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">ramenSettings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">organization_id</span><span class="p">:</span> <span class="s2">"lkadjf89383hr89"</span><span class="p">,</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">id</span><span class="p">:</span> <span class="s2">"903849h"</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="s2">"Bugs Bunny"</span><span class="p">,</span>
+      <span class="na">email</span><span class="p">:</span> <span class="s2">"ryan+bugs@ramen.is"</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.ramen.is/assets/ramen.js"</span> <span class="na">async</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre>
+
+<p>First, you need to define the <code class="prettyprint">window.ramenSettings</code>
+object. </p>
+
+<p>Then, you need to include the RamenJS library.</p>
+
+<p>The order of operations is important here.
+<code class="prettyprint">window.ramenSettings</code> must be defined before RamenJS
+is loaded.</p>
+<h2 id='custom-installation'>Custom installation</h2><pre class="highlight html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.ramen.is/assets/ramen.js"</span> <span class="na">async</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="c">&lt;!-- Later... --&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// See note
+</span>    <span class="nx">Ramen</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span>
+      <span class="na">organization_id</span><span class="p">:</span> <span class="s2">"lkadjf89383hr89"</span><span class="p">,</span>
+      <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">id</span><span class="p">:</span> <span class="s2">"903849h"</span><span class="p">,</span>
+        <span class="na">name</span><span class="p">:</span> <span class="s2">"Bugs Bunny"</span><span class="p">,</span>
+        <span class="na">email</span><span class="p">:</span> <span class="s2">"ryan+bugs@ramen.is"</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+
+<p>For some more complicated apps, you may not want to,
+or be able to, define <code class="prettyprint">ramenSettings</code> at the time the
+page renders.</p>
+
+<p>In that case, load the RamenJS script tag as shown.</p>
+
+<p>Later on, you can call <code class="prettyprint">Ramen.init.update</code> after the
+page has completely loaded.</p>
+<h3 id='a-note-on-order-of-operations'>A note on order of operations</h3>
+<p>Note that calls to anything under the <code class="prettyprint">Ramen</code> object
+need to be wrapped in some sort of <code class="prettyprint">onReady</code> callback</p>
+
+<p>This is an issue we&rsquo;ll be addressing
+with RamenJS v2.0, which will ship in the first half
+of 2016.</p>
+<h2 id='secure-mode'>Secure Mode</h2>
+<p>Secure Mode ensures that nobody can spoof being one
+of your customers. It is disabled by default, because
+it takes a little extra developer time to setup
+correcgtly.</p>
+
+<p>To enable secure mode, you need to add a few things
+to your <code class="prettyprint">ramenSettings</code> object:</p>
+
+<ul>
+<li><code class="prettyprint">timestamp</code>: The current time in epoch seconds</li>
+<li><code class="prettyprint">auth_hash</code>: A SHA-256 hash</li>
+</ul>
+<h3 id='timestamp'>Timestamp</h3><pre class="highlight ruby"><span class="n">ts</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">to_i</span>
+</pre>
+<pre class="highlight javascript"><span class="nx">ts</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">())</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+</pre>
+
+<p>The <code class="prettyprint">timestamp</code> attribute must be a time within the last
+15 minutes.</p>
+<h3 id='calculating-code-classprettyprintauth_hashcode'>Calculating <code class="prettyprint">auth_hash</code></h3><pre class="highlight ruby"><span class="n">array</span> <span class="o">=</span> <span class="o">[]</span>
+<span class="n">array</span> <span class="o">&lt;&lt;</span> <span class="s2">"ryan@ramen.is"</span>
+<span class="n">array</span> <span class="o">&lt;&lt;</span> <span class="mi">42</span>
+<span class="n">array</span> <span class="o">&lt;&lt;</span> <span class="s2">"Ryan Angilly"</span>
+<span class="n">array</span> <span class="o">&lt;&lt;</span> <span class="mi">1234567890</span>
+<span class="n">array</span> <span class="o">&lt;&lt;</span> <span class="s2">"oihs9uhasdg8934y8"</span>
+<span class="n">str</span> <span class="o">=</span> <span class="n">array</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">":"</span><span class="p">)</span>
+<span class="n">digest</span> <span class="o">=</span> <span class="p">(</span><span class="no">Digest</span><span class="o">::</span><span class="no">SHA256</span><span class="p">.</span><span class="nf">new</span> <span class="o">&lt;&lt;</span> <span class="n">str</span><span class="p">).</span><span class="nf">to_s</span>
+<span class="n">digest</span> <span class="c1">#=&gt; "09cc0a69233f1bf41e68ed00b9256fde5a4542e9fdba635fe2a9a4edf9ee1ba1"</span>
+</pre>
+
+<p>The hash is calculated as follows:</p>
+
+<ol>
+<li><p>Create an array with the following elements:</p>
+
+<ul>
+<li><code class="prettyprint">email</code>: eg. <code class="prettyprint">&quot;ryan@ramen.is&quot;</code></li>
+<li><code class="prettyprint">id</code>: eg. <code class="prettyprint">42</code></li>
+<li><code class="prettyprint">name</code>: eg. <code class="prettyprint">Ryan Angilly</code></li>
+<li><code class="prettyprint">timestamp</code>: eg. <code class="prettyprint">1234567890</code></li>
+<li><code class="prettyprint">ORGANIZATION_SECRET_KEY</code>:  eg. <code class="prettyprint">oihs9uhasdg8934y8</code></li>
+</ul></li>
+<li><p>Your array now looks like this:
+<code class="prettyprint">[&quot;ryan@ramen.is&quot;, 42, &quot;Ryan Angilly&quot;, 1234567890, &quot;oihs9uhasdg8934y8&quot;</code></p></li>
+<li><p>Join the elements of that array together with a
+colon (<code class="prettyprint">:</code>) into a string</p></li>
+<li><p>Your string is now: <code class="prettyprint">&quot;ryan@ramen.is:42:Ryan Angilly:1234567890:oihs9uhasdg8934y8&quot;</code></p></li>
+<li><p>Generate a SHA256 hash from that string</p></li>
+<li><p>The SHA256 hash for the string in step 4 is:
+<code class="prettyprint">09cc0a69233f1bf41e68ed00b9256fde5a4542e9fdba635fe2a9a4edf9ee1ba1</code></p></li>
+</ol>
+
+          <h1 id='customers'>Customers</h1><pre class="highlight html"><span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">ramenSettings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">organization_id</span><span class="p">:</span> <span class="s2">"lkadjf89383hr89"</span><span class="p">,</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">id</span><span class="p">:</span> <span class="s2">"903849h"</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="s2">"Bugs Bunny"</span><span class="p">,</span>
+      <span class="na">email</span><span class="p">:</span> <span class="s2">"ryan+bugs@ramen.is"</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+
+<p>Ramen is used for asking questions, but only of your
+<em>users</em>. This means that until a User has logged into
+your app, there is no way Ramen will be able to
+interact with them.</p>
+
+<p>In Ramen terminology, a we call a person logged into
+you application a &lsquo;Customer&rsquo;.</p>
+
+<p>RamenJS <em>must</em> know the following things about your customers:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>Yes</td>
+<td>A unique identifier</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>Yes</td>
+<td>A valid email address</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Yes</td>
+<td>The name of the person</td>
+</tr>
+</tbody></table>
+
+<p>In additional, <code class="prettyprint">ramenSettings</code> also accepts the following options:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>created_at</td>
+<td>Integer</td>
+<td>No</td>
+<td>The unix timestamp (epoch seconds, not milliseconds) for when this account was created.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>Float</td>
+<td>No</td>
+<td>An arbitrary value for that person. Used for Audience creation.</td>
+</tr>
+<tr>
+<td>traits</td>
+<td>Object</td>
+<td>No</td>
+<td>See <a href="#custom-traits">Custom Traits</a> below</td>
+</tr>
+<tr>
+<td>bug_image_url</td>
+<td>String</td>
+<td>No</td>
+<td>URL for an image to replace the standard green Ramen &lsquo;R&rsquo; icon. See <a href="#customization">Customization</a> below.</td>
+</tr>
+<tr>
+<td>question_id</td>
+<td>String</td>
+<td>No</td>
+<td>The ID of a question. This will forces a specific question to appear no matter what.</td>
+</tr>
+</tbody></table>
+
+          <h1 id='companies'>Companies</h1><pre class="highlight html"><span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">ramenSettings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">organization_id</span><span class="p">:</span> <span class="s2">"83hakj3"</span><span class="p">,</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span> <span class="cm">/* Explained above */</span> <span class="p">},</span>
+    <span class="na">company</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">id</span><span class="p">:</span> <span class="s2">"42"</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="s2">"Ramen"</span><span class="p">,</span>
+      <span class="na">url</span><span class="p">:</span> <span class="s2">"https://ramen.is"</span>
+      <span class="na">value</span><span class="p">:</span> <span class="mf">353000.0</span><span class="p">,</span>
+      <span class="na">traits</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">is_rad</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+
+<p>You can group a Customer into a Company. A Company is
+an organization that the currently logged in person
+belongs to.</p>
+
+<p>Company data can be used when creating
+<a href="#audiences">Audiences</a>. So you could, for example,
+target a question to only appear to Customers that
+are members of a specific Company.</p>
+
+<p>RamenJS wants to know the following things
+about Companies:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>Yes</td>
+<td>A unique identifier</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>Yes</td>
+<td>A valid URL for the comapny</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Yes</td>
+<td>The name of the company</td>
+</tr>
+<tr>
+<td>value</td>
+<td>Float</td>
+<td>No</td>
+<td>An arbitrary value for that company. Used for Audience creation.</td>
+</tr>
+<tr>
+<td>traits</td>
+<td>Object</td>
+<td>No</td>
+<td>See <a href="#custom-traits">Custom Traits</a> below</td>
+</tr>
+</tbody></table>
+
+          <h1 id='custom-traits'>Custom Traits</h1><pre class="highlight html"><span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">ramenSettings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">organization_id</span><span class="p">:</span> <span class="s2">"iafh89335"</span><span class="p">,</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span> <span class="cm">/* Explained above */</span> <span class="p">},</span>
+    <span class="na">company</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">id</span><span class="p">:</span> <span class="s2">"42"</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="s2">"Ramen"</span><span class="p">,</span>
+      <span class="na">url</span><span class="p">:</span> <span class="s2">"https://ramen.is"</span>
+      <span class="na">value</span><span class="p">:</span> <span class="mf">353000.0</span><span class="p">,</span>
+      <span class="na">traits</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">is_rad</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">funded_at</span><span class="p">:</span> <span class="mi">1234567890</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+
+<p>Both Customers and Companies can have &ldquo;Traits&rdquo;
+assigned to them. Traits are key/value pairs
+that can be used for Audience creation:</p>
+
+<p><img alt="Traits can be used to create Audiences" src="https://dl.dropboxusercontent.com/spa/c8k9520tqhih2dg/3mz-cobc.png" /></p>
+<h2 id='names'>Names</h2>
+<p>Trait names are strings that can contain any letter,
+any number, underscores (<code class="prettyprint">_</code>) and dashes (<code class="prettyprint">-</code>).
+Trait names are case-sensitive.</p>
+<h2 id='types'>Types</h2>
+<p>Trait values can be the following types:</p>
+
+<ul>
+<li>String</li>
+<li>Boolean</li>
+<li>Integer</li>
+<li>Float</li>
+<li>Time (See below)</li>
+</ul>
+<h3 id='time-types'>Time types</h3>
+<p>Time types are declared by ending the trait
+name in <code class="prettyprint">_at</code>. For example:</p>
+
+<ul>
+<li><code class="prettyprint">last_seen_at</code></li>
+<li><code class="prettyprint">upgraded_at</code></li>
+</ul>
+
+<p>You can pass in times in the following formats:</p>
+
+<ul>
+<li>Epoch seconds: <code class="prettyprint">1234567890</code></li>
+<li>XML Schema: <code class="prettyprint">2009-02-13T23:31:30Z</code> (UTC) or
+<code class="prettyprint">2009-02-13T16:31:30-07:00</code> (with offset)</li>
+</ul>
+<h2 id='type-casting'>Type Casting</h2>
+<p>The first time RamenJS sees a new trait with a
+non-null value,
+it will record the type and cast all future traits
+to that type.</p>
+
+          <h1 id='customization'>Customization</h1><h2 id='icon'>Icon</h2><pre class="highlight html"><span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">ramenSettings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">organization_id</span><span class="p">:</span> <span class="s2">"lkadjf89383hr89"</span><span class="p">,</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">id</span><span class="p">:</span> <span class="s2">"903849h"</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="s2">"Bugs Bunny"</span><span class="p">,</span>
+      <span class="na">email</span><span class="p">:</span> <span class="s2">"ryan+bugs@ramen.is"</span><span class="p">,</span>
+      <span class="na">bug_image_url</span><span class="p">:</span> <span class="s2">"https://thecatapi.com/api/images/get?format=src"</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+
+<p>The RamenJS popups were designed to be minimal so that
+they would Just Look Good™ on any webpage. The style
+of the popups cannot be modified, but the icon, the
+little green Ramen &lsquo;R&rsquo; can be chanaged.</p>
+
+          <h1 id='product-center'>Product Center</h1>
+<p>Product Center is a feature that lets you discuss Features
+with your Customers. Product Center is only available on
+certain paid plans.</p>
+<h2 id='custom-links'>Custom Links</h2><pre class="highlight html"><span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">ramenSettings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">organization_id</span><span class="p">:</span> <span class="s2">"..."</span><span class="p">,</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span> <span class="cm">/* Explained above */</span> <span class="p">},</span>
+    <span class="na">company</span><span class="p">:</span> <span class="p">{</span> <span class="cm">/* Explained above */</span> <span class="p">},</span>
+    <span class="na">custom_links</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">title</span><span class="p">:</span> <span class="s1">'E-mail support'</span><span class="p">,</span>
+        <span class="na">href</span><span class="p">:</span> <span class="s1">'mailto:support@ramen.is'</span><span class="p">,</span>
+      <span class="p">},</span>
+
+      <span class="p">{</span>
+        <span class="na">title</span><span class="p">:</span> <span class="s1">'Chat with support'</span><span class="p">,</span>
+        <span class="na">callback</span><span class="p">:</span> <span class="s1">'Interom("showNewMessage")'</span>
+      <span class="p">}</span> <span class="cm">/* This is not a type. If you want to use
+           Intercom for in-app chat, this is one way
+           to make it play nice w/ Ramen. */</span>
+    <span class="p">]</span>
+  <span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+
+<p>We provide a way for you to customize links that
+appear at the bottom of Product Center.</p>
+
+<p>Custom Links have a <code class="prettyprint">title</code> property and either an
+<code class="prettyprint">href</code> or a <code class="prettyprint">callback</code> property. <code class="prettyprint">href</code>s
+must be full URIs (including protocol, ie. https).
+<code class="prettyprint">callback</code>s can be JavaScript closures
+or strings that will be <code class="prettyprint">eval</code>&rsquo;d</p>
+
+<p>You are allowed to provide up to 3 Custom Links.</p>
+<h2 id='placement'>Placement</h2><pre class="highlight html"><span class="nt">&lt;nav&gt;</span>
+<span class="nt">&lt;ul&gt;</span>
+  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/account"</span><span class="nt">&gt;</span>Your Account<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/product-center"</span> <span class="na">id=</span><span class="s">"custom-ramen-trigger"</span><span class="nt">&gt;</span>Product Center<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/nav&gt;</span>
+
+<span class="nt">&lt;style&gt;</span>
+<span class="nc">._r-badge</span><span class="nd">:after</span> <span class="p">{</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">-5px</span><span class="p">;</span>
+  <span class="nl">right</span><span class="p">:</span> <span class="m">-5px</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+  <span class="nl">-webkit-border-radius</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+  <span class="nl">-moz-border-radius</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+  <span class="nl">content</span><span class="p">:</span> <span class="s1">" "</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">18px</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">18px</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">12px</span><span class="p">;</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">16px</span><span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="nc">._r-related</span> <span class="p">{</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">ramenSettings</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">organization_id</span><span class="p">:</span> <span class="nx">YOUR_ORG_ID</span><span class="p">,</span>
+  <span class="na">user</span><span class="p">:</span> <span class="p">{...},</span>
+  <span class="na">company</span><span class="p">:</span> <span class="p">{...},</span>
+  <span class="na">custom_trigger_id</span><span class="p">:</span> <span class="s2">"custom-ramen-trigger"</span>
+<span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+
+<p>You can set a custom placement, called a &lsquo;trigger&rsquo;
+for the RamenJS widget so that instead of showing the
+icon in the bottom right or left corner of the screen,
+a link in your nav can be used to trigger opening
+Product Center.</p>
+
+<p>To enable this customization, set
+<code class="prettyprint">ramenSettings.custom_trigger_id</code> to the
+ID of the element.</p>
+<h3 id='styling-the-custom-trigger'>Styling the Custom Trigger</h3>
+<p>We apply different styles to the RamenJS widget:</p>
+
+<ol>
+<li>When there is a Feature related to the current URL, the widget icon will be full color.</li>
+<li>When there are no related features, a grayscale image is used instead.</li>
+<li>When there are newly deployed features, a circular red badge is placed over the top right corner of the icon.</li>
+</ol>
+
+<p>When using a customer trigger, we do not attempt to modify the style to reflect state changes.
+Instead, we will add classes to the element. It will be up to you to style the elements.</p>
+
+<ul>
+<li><code class="prettyprint">_r-related</code>: We will add this class when there are Features related to the current URL</li>
+<li><code class="prettyprint">_r-badge</code>: We will add this class when there are newly deployed features that have not yet been seen by your customers.</li>
+</ul>
+
+          <h1 id='examples'>Examples</h1>
+<p>Here are some heavily commented examples.</p>
+<h2 id='rubyerb'>Ruby/ERB</h2>
+<p>If you&rsquo;re on Ruby on Rails, you should check out our <a href="https://rubygems.org/gems/ramen-rails">Rubygem</a>,
+but if not, here is a Ruby/ERB example.</p>
+<pre class="highlight ruby"><span class="o">&lt;!--</span> <span class="mi">1</span><span class="o">.</span> <span class="no">OPTIONAL</span><span class="p">:</span> <span class="no">This</span> <span class="o">&lt;</span><span class="n">link</span><span class="o">&gt;</span> <span class="n">tag</span> <span class="n">can</span> <span class="n">goes</span> <span class="n">at</span> <span class="n">the</span> <span class="n">top</span> <span class="n">of</span> <span class="n">your</span> <span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span> <span class="n">to</span> <span class="n">prefetch</span> <span class="no">DNS</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">link</span> <span class="n">rel</span><span class="o">=</span><span class="s2">"dns-prefetch"</span> <span class="n">href</span><span class="o">=</span><span class="s2">"http://cdn.ramen.dev"</span><span class="o">&gt;</span>
+
+<span class="o">&lt;!--</span> <span class="mi">2</span><span class="o">.</span> <span class="no">This</span> <span class="n">script</span> <span class="n">tag</span> <span class="n">can</span> <span class="n">go</span> <span class="n">anywhere</span> <span class="k">in</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span> <span class="n">but</span> <span class="o">**</span><span class="n">before</span><span class="o">**</span> <span class="n">the</span> <span class="no">RamenJS</span> <span class="n">tag</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="sx">% @ts </span><span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">to_i</span> <span class="sx">%&gt; &lt;!-- Optional unless you want to use Secure Mode --&gt;</span>
+  <span class="n">window</span><span class="p">.</span><span class="nf">ramenSettings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">organization_id: </span><span class="s2">"ORGANIZATION_ID"</span><span class="p">,</span>
+    <span class="ss">user: </span><span class="p">{</span>
+      <span class="sr">//</span> <span class="no">Required</span><span class="o">.</span> <span class="no">If</span> <span class="n">you</span> <span class="n">don</span><span class="s1">'t have a name, pass in their email here.
+      name: &lt;%= current_user.name.to_json.html_safe %&gt;,
+
+      // Required. If you don'</span><span class="n">t</span> <span class="n">have</span> <span class="n">email</span> <span class="n">addresses</span> <span class="k">for</span> <span class="n">your</span> <span class="n">logged</span> <span class="k">in</span> <span class="n">users</span><span class="p">,</span> <span class="n">please</span> <span class="n">contact</span> <span class="n">support</span><span class="vi">@ramen</span><span class="p">.</span><span class="nf">is</span>
+      <span class="ss">email: </span><span class="o">&lt;</span><span class="sx">%= current_user.email.to_json.html_safe %&gt;,
+
+      // Required. This must be unique. Changing this creates a new Customer.
+      id: &lt;%=</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">id</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">to_json</span><span class="p">.</span><span class="nf">html_safe</span> <span class="sx">%&gt;,
+
+      // Optional
+      created_at: &lt;%= current_user.created_at.to_i %&gt;</span>
+    <span class="p">}</span> <span class="o">/</span><span class="sr">/ If you uncomment the optional attributes below, don't forget to add a comma (",") here
+
+    /</span><span class="o">/</span> <span class="no">The</span> <span class="k">next</span> <span class="n">two</span> <span class="n">keys</span> <span class="n">are</span> <span class="n">optional</span> <span class="k">unless</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">enable</span> <span class="no">Secure</span> <span class="no">Mode</span>
+    <span class="sr">//</span> <span class="ss">timestamp: </span><span class="o">&lt;</span><span class="sx">%= @ts %&gt;,    
+    // auth_hash: &lt;%=</span> <span class="p">(</span><span class="no">Digest</span><span class="o">::</span><span class="no">SHA2</span><span class="p">.</span><span class="nf">new</span> <span class="o">&lt;&lt;</span> <span class="s2">"</span><span class="si">#{</span><span class="n">current_user</span><span class="p">.</span><span class="nf">email</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="n">current_user</span><span class="p">.</span><span class="nf">id</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="n">current_user</span><span class="p">.</span><span class="nf">name</span><span class="si">}</span><span class="s2">:</span><span class="si">#{</span><span class="vi">@ts</span><span class="si">}</span><span class="s2">:ORGANIZATION_SECRET_KEY"</span><span class="p">).</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">to_json</span><span class="p">.</span><span class="nf">html_safe</span> <span class="sx">%&gt;
+  };
+&lt;/script&gt;</span>
+
+<span class="o">&lt;!--</span> <span class="mi">3</span><span class="o">.</span> <span class="no">This</span> <span class="n">goes</span> <span class="n">just</span> <span class="n">before</span> <span class="n">the</span> <span class="n">closing</span> <span class="o">&lt;</span><span class="sr">/body&gt; tag and **always after** where you set window.ramenSettings --&gt;
+&lt;script src="http:/</span><span class="o">/</span><span class="n">cdn</span><span class="p">.</span><span class="nf">ramen</span><span class="p">.</span><span class="nf">dev</span><span class="sr">/assets/</span><span class="n">ramen</span><span class="p">.</span><span class="nf">js</span><span class="s2">" async&gt;
+&lt;/script&gt;
+</span></pre>
+<h2 id='javascript'>JavaScript</h2><pre class="highlight html"><span class="c">&lt;!-- 1. OPTIONAL: This &lt;link&gt; tag can goes at the top of your &lt;head&gt; to prefetch DNS --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"dns-prefetch"</span> <span class="na">href=</span><span class="s">"https://cdn.ramen.is"</span><span class="nt">&gt;</span>
+
+<span class="c">&lt;!-- 2. This script tag can go anywhere in the &lt;body&gt; but **before** the RamenJS tag --&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">ramenSettings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">organization_id</span><span class="p">:</span> <span class="s2">"YOUR_ORGANIZATION_ID"</span><span class="p">,</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+      <span class="c1">// Required. If you don't have a name, pass in their email here.
+</span>      <span class="nl">name</span><span class="p">:</span> <span class="s2">"Ryan Angilly"</span><span class="p">,</span>
+
+      <span class="c1">// Required. If you don't have email addresses for your logged in users,
+</span>      <span class="c1">// please contact support@ramen.is
+</span>      <span class="nl">email</span><span class="p">:</span> <span class="s2">"ryan@ramen.is"</span><span class="p">,</span>
+
+      <span class="c1">// Required. This must be unique. Changing this creates a new Customer.
+</span>      <span class="nl">id</span><span class="p">:</span> <span class="s2">"527de734763a556882001003"</span><span class="p">,</span>
+
+      <span class="c1">// Optional
+</span>      <span class="nl">created_at</span><span class="p">:</span> <span class="mi">1234567890</span> 
+    <span class="p">}</span> <span class="c1">// If you uncomment the optional attributes below, don't forget to add a comma (",") here
+</span>
+    <span class="c1">// The next two keys are optional unless you want to enable Secure Mode
+</span>    <span class="c1">// timestamp: ts_used_server_side_to_calculate_auth_hash,
+</span>    <span class="c1">// auth_hash: auth_hash_calculated_server_side
+</span>  <span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+
+<span class="c">&lt;!-- 3. This goes just before the closing &lt;/body&gt; tag and **always after** where you set window.ramenSettings --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://ramen.is/assets/ramen.js"</span> <span class="na">async</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+<h2 id='wordpressphp'>Wordpress/PHP</h2>
+<p>If you&rsquo;re on Wordpress, you should checkout our <a href="#eager-io">Eager.io</a> integration,
+but here is an example:</p>
+<pre class="highlight html"><span class="c">&lt;!-- 1. OPTIONAL: This &lt;link&gt; tag can goes at the top of your &lt;head&gt; to prefetch DNS --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"dns-prefetch"</span> <span class="na">href=</span><span class="s">"http://cdn.ramen.dev"</span><span class="nt">&gt;</span>
+
+<span class="c">&lt;!-- 2. This script tag can go anywhere in the &lt;body&gt; but **before** the RamenJS tag --&gt;</span>
+<span class="cp">&lt;?php if ( is_user_logged_in() ) { ?&gt;</span>
+
+<span class="cp">&lt;?php global $current_user;
+  get_currentuserinfo();
+  $user_roles = $current_user-&gt;roles;
+  $user_role = array_shift($user_roles);
+
+  // The next two keys are optional unless you want to enable Secure Mode
+  $_ramen_ts = time();
+  $_ramen_items = array($current_user-&gt;user_email, $current_user-&gt;ID, $current_user-&gt;display_name, $_ramen_ts, "ORGANIZATION_SECRET_KEY");
+?&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">ramenSettings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">organization_id</span><span class="p">:</span> <span class="s2">"ORGANIZATION_ID"</span><span class="p">,</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+      <span class="c1">// Required. If you don't have a name, pass in their email here.
+</span>      <span class="nl">name</span><span class="p">:</span> <span class="s2">"&lt;?php echo $current_user-&gt;display_name; ?&gt;"</span><span class="p">,</span>
+
+      <span class="c1">// Required. If you don't have email addresses for your logged in users, please contact support@ramen.is
+</span>      <span class="nl">email</span><span class="p">:</span> <span class="s2">"&lt;?php echo $current_user-&gt;user_email; ?&gt;"</span><span class="p">,</span> 
+
+      <span class="c1">// Required. This must be unique. Changing this creates a new Customer.
+</span>      <span class="nl">id</span><span class="p">:</span> <span class="o">&lt;</span><span class="p">?</span><span class="nx">php</span> <span class="nx">echo</span> <span class="nx">$current_user</span><span class="o">-&gt;</span><span class="nx">ID</span><span class="p">;</span> <span class="p">?</span><span class="o">&gt;</span> <span class="p">,</span>
+
+      <span class="c1">// Optional
+</span>      <span class="nx">created_at</span><span class="p">:</span> <span class="o">&lt;</span><span class="p">?</span><span class="nx">php</span> <span class="nx">echo</span> <span class="nx">$current_user</span><span class="o">-&gt;</span><span class="nx">created_at</span><span class="p">;</span> <span class="p">?</span><span class="o">&gt;</span>
+    <span class="err">}</span> <span class="c1">// If you uncomment the optional attributes below, don't forget to add a comma (",") here
+</span>
+    <span class="c1">// The next two keys are optional unless you want to enable Secure Mode
+</span>    <span class="c1">// timestamp: &lt;?php echo $_ramen_ts ?&gt;,
+</span>    <span class="c1">// auth_hash: "&lt;?php echo hash("sha256", implode(":", $_ramen_items)); ?&gt;"
+</span>  <span class="err">}</span><span class="p">;</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="cp">&lt;?php } ?&gt;</span> 
+
+
+<span class="c">&lt;!-- 3. This goes just before the closing &lt;/body&gt; tag and **always after** where you set window.ramenSettings --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://cdn.ramen.dev/assets/ramen.js"</span> <span class="na">async</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+<h2 id='python'>Python</h2>
+<p>Thanks to fjania for putting this together. Gist available
+<a href="https://gist.github.com/ryana/41b7de953fb314c00a7a#file-gistfile1-py">here</a></p>
+<pre class="highlight python"><span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">ramen</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">ramen_js</span> <span class="o">=</span> <span class="s">''</span><span class="p">;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_anonymous</span><span class="p">():</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span>
+        <span class="n">user_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="nb">id</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s">"{} {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">last_name</span><span class="p">)</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+        <span class="n">secret_key</span> <span class="o">=</span> <span class="s">"SECRET_KEY_GOES_HERE"</span>
+        <span class="n">auth_input</span> <span class="o">=</span> <span class="s">"{}:{}:{}:{}:{}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">email</span><span class="p">,</span>
+            <span class="n">user_id</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">timestamp</span><span class="p">,</span>
+            <span class="n">secret_key</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">auth_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">auth_input</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+        <span class="n">ramen_js</span> <span class="o">=</span> <span class="s">'''
+        &lt;!-- This can go anywhere before the ramen.js tag --&gt;
+        &lt;script&gt;
+            window.ramenSettings = {{
+                organization_id: "555cc17077656204242f0000",
+                user: {{
+                    name: "{name}",
+                    email: "{email}",
+                    id: "{id}",
+                }},
+                timestamp: {timestamp},
+                auth_hash: "{auth_hash}"
+            }};
+        &lt;/script&gt;
+        &lt;!-- This goes before the &lt;/body&gt; tag --&gt;
+        &lt;script src="https://cdn.ramen.is/assets/ramen.js" async&gt;
+        &lt;/script&gt;
+        '''</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">,</span>
+            <span class="nb">id</span> <span class="o">=</span> <span class="n">user_id</span><span class="p">,</span>
+            <span class="n">email</span> <span class="o">=</span> <span class="n">email</span><span class="p">,</span>
+            <span class="n">timestamp</span> <span class="o">=</span> <span class="n">timestamp</span><span class="p">,</span>
+            <span class="n">auth_hash</span> <span class="o">=</span> <span class="n">auth_hash</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span> <span class="s">'ramen_js'</span><span class="p">:</span> <span class="n">ramen_js</span> <span class="p">}</span>
+</pre>
+
+          <h1 id='reference'>Reference</h1><h2 id='window-ramensettings'>window.ramenSettings</h2>
+<p>All the options you can set on ramenSettings, the same object
+you can pass to <code class="prettyprint">Ramen.Api.update(config)</code> for subsequent updates.</p>
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">ramenSettings</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="cm">/*
+   * Core Options
+   */</span>
+  <span class="c1">// Your Organization ID
+</span>  <span class="c1">// Required
+</span>  <span class="nl">organization_id</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+
+  <span class="c1">// The currently logged in user
+</span>  <span class="c1">// Required
+</span>  <span class="nl">user</span><span class="p">:</span> <span class="p">{</span>
+  <span class="p">},</span>
+
+  <span class="c1">// The company of the currently logged in user
+</span>  <span class="nl">company</span><span class="p">:</span> <span class="p">{</span>
+  <span class="p">},</span>
+
+  <span class="c1">// Environment. Defaults to production. If you set this
+</span>  <span class="c1">// to anything other than 'production' then you can use
+</span>  <span class="c1">// Secure Mode but it will not be forced on. This way
+</span>  <span class="c1">// You can test it in Development, Staging, etc... before
+</span>  <span class="c1">// deploying
+</span>  <span class="c1">// Default: "production"
+</span>  <span class="nl">environment</span><span class="p">:</span> <span class="s2">"production"</span><span class="p">,</span>
+
+
+
+
+  <span class="cm">/*
+   * Secure Mode Options
+   * Secure Mode is disabled by default. Once enabled, it
+   * cannot be turned off.
+   */</span>
+  <span class="c1">// Options for Secure Mode
+</span>  <span class="nl">ts</span><span class="p">:</span> <span class="mi">1234567890</span><span class="p">,</span>
+  <span class="nl">auth_hash</span><span class="p">:</span> <span class="s2">"mumbo-jumbo"</span><span class="p">,</span>
+
+
+
+
+  <span class="cm">/*
+   * Misc Options
+   */</span>
+  <span class="c1">// Disables watching `window.location`, and automatically calling
+</span>  <span class="c1">// .page() when a change (include anchor changes) are noticed.
+</span>  <span class="c1">// Default: false
+</span>  <span class="nl">disable_location_watch</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+
+  <span class="c1">// The ID of a Question you want to force ask
+</span>  <span class="c1">// Default: null
+</span>  <span class="nl">question_id</span><span class="p">:</span> <span class="s2">"string-id-of-question"</span><span class="p">,</span>
+
+
+  <span class="c1">// Make RamenJS not log to console
+</span>  <span class="c1">// Default: false
+</span>  <span class="nl">silent</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+
+
+
+
+  <span class="cm">/*
+   * Product Center Options
+   */</span>
+  <span class="c1">// Custom Trigger Element
+</span>  <span class="nl">customer_trigger_id</span><span class="p">:</span> <span class="s2">"el-id"</span><span class="p">,</span>
+
+  <span class="c1">// Custom Links
+</span>  <span class="nl">custom_links</span><span class="p">:</span> <span class="p">[</span>
+  <span class="p">]</span>
+
+<span class="p">};</span>
+</pre>
+<h2 id='ramen-api-updateconfig'>Ramen.Api.update(config)</h2><pre class="highlight javascript"><span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="s1">'34349853'</span><span class="p">,</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s1">'Marky Marcus'</span><span class="p">,</span>
+    <span class="na">email</span><span class="p">:</span> <span class="s1">'ryan+marky@ramen.is'</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">Ramen</span><span class="p">.</span><span class="nx">Api</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+</pre>
+
+<p>This updates the data for the currently logged in user.</p>
+<h2 id='ramen-api-trackevent_name'>Ramen.Api.track(event_name)</h2><pre class="highlight html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/unsubscribe"</span> <span class="na">onclick=</span><span class="s">"Ramen.Api.track('Clicked Unsubscribe Link');"</span><span class="nt">&gt;</span>
+I'm out.
+<span class="nt">&lt;/a&gt;</span>
+</pre>
+
+<p>You can track events using <code class="prettyprint">Ramen.Api.track(event_name)</code> and then use that data
+in Audience creation.</p>
+
+<p>For example, you could create an event called &ldquo;Clicked Unsubscribe Link&rdquo;,
+and have a question appear on the following page.</p>
+<h2 id='ramen-api-page'>Ramen.Api.page()</h2><pre class="highlight javascript"><span class="nx">Ramen</span><span class="p">.</span><span class="nx">Api</span><span class="p">.</span><span class="nx">page</span><span class="p">()</span>
+</pre>
+
+<p>Notify Ramen that the page has changed. This will trigger
+a lookup to see if the new page means the current customer
+should be asked a question.</p>
+
+<p>By default, Ramen
+will monitor <code class="prettyprint">window.location</code> for changes, but you
+can force this with a call to <code class="prettyprint">.page()</code></p>
+<h2 id='ramen-api-die'>Ramen.Api.die()</h2><pre class="highlight javascript"><span class="nx">Ramen</span><span class="p">.</span><span class="nx">Api</span><span class="p">.</span><span class="nx">die</span><span class="p">()</span>
+</pre>
+
+<p>Kill RamenJS. This will:</p>
+
+<ul>
+<li>Remove all elements added to the DOM</li>
+<li>Remove all listeners added</li>
+<li>Clear all intervals and timeouts</li>
+</ul>
+
+          <h1 id='credits'>Credits</h1>
+<p>Weston Platter did a ton of work getting this site up.
+<a href="https://twitter.com/home?status=Hey%20%40westonplatter%20you%20rock%20for%20your%20work%20on%20http%3A//docs.ramen.is!%20Here's%20a%20cat%20gif%20https%3A//thecatapi.com/api/images/get?format=src%26type=gif">Tweet him a cat pic</a></p>
+<h1 id='a-cat-gif'>A Cat Gif</h1>
+<p>Here is a cat gif:</p>
+
+<p><img alt="Catz" src="https://thecatapi.com/api/images/get?format=src&amp;type=gif" /></p>
+<h2 id=''></h2>
+<p>Copyright Ramen, Inc. 2012 - 2016</p>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
